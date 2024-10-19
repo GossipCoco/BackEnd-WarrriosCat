@@ -1,5 +1,5 @@
 const { DataTypes, sequelize } = require('sequelize');
-const connection = require('../DataLayer/connectionWithSingleton');
+const connection = require('../DataLayer/connection');
 
 const functions = require ('./Function')
 

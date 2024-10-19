@@ -14,6 +14,7 @@ const upload = multer();
 require('dotenv').config();
 
 const Home = require('./app/Routes/Home')
+const User = require('./app/Routes/User')
 
 const corsOptions = {
     // origin: '*',
@@ -35,6 +36,7 @@ app
     .use(express.urlencoded({ extended: true }))
     .use(helmet())
     .use('/Home', Home)
+    .use('/User', User)
     .use(function (req, res) {
         res.setHeader('Content-Type', 'application/json');
         res.status(404).send({ result: 'error' });

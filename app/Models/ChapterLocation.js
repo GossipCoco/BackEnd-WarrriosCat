@@ -1,5 +1,5 @@
 const { DataTypes } = require('sequelize');
-const connection = require('../DataLayer/connectionWithSingleton');
+const connection = require('../DataLayer/connection');
 const ChapterLocation = connection.define("ChapterLocation", {
     Id: {
       type: DataTypes.STRING,

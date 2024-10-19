@@ -1,5 +1,5 @@
 const { DataTypes } = require('sequelize');
-const connection = require('../DataLayer/connectionWithSingleton');
+const connection = require('../DataLayer/connection');
 
 const Role = connection.define(
     "Role",

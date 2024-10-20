@@ -3,15 +3,14 @@ const https = require('https');
 const bodyParser = require('body-parser')
 const express = require("express");
 const cors = require("cors");
-
+require('dotenv').config();
 const PORT = process.env.PORT || 4047;
 const http = require('http')
 const app = express();
 const helmet = require("helmet")
-const SocketIOController = require('./app/controllers/SocketIOController')
+const SocketIOController = require('./app/controllers/socketIOController')
 const multer = require('multer');
 const upload = multer();
-require('dotenv').config();
 
 const Home = require('./app/Routes/Home')
 const User = require('./app/Routes/User')

@@ -5,7 +5,7 @@ const maxSize = 2 * 1920 * 1920;
 let storage = multer.diskStorage({
   destination: (req, file, cb) => {
     const __dirname =
-      "C:\\Users\\gossi\\OneDrive\\Documents\\project\\Project-Warriors\\front-app-v3\\public\\images\\";
+      "C:\\Users\\gossi\\Documents\\Project\\Project-Warriors\\front-app-v3\\public\\images";
     console.log("__basedir : ", __dirname);
     cb(null, __dirname + "Characters/");
   },

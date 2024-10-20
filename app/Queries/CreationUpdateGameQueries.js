@@ -68,27 +68,33 @@ const CreateANewGame = async (UserId, data, imagePath) => {
       await model.FictionIllustration.create(requestFictionIllustration);
   
       // Associe le premier personnage au jeu
-      const RequestCharacterFirst = {
-        Id: uuidv4(),
-        GameId: gameId,
-        CharacterId: data.FirstCharacterId
-      };
-      await model.GameCharacter.create(RequestCharacterFirst);
+      if(data.FirstCharacterId){
+        const RequestCharacterFirst = {
+          Id: uuidv4(),
+          GameId: gameId,
+          CharacterId: data.FirstCharacterId
+        };
+        await model.GameCharacter.create(RequestCharacterFirst);
+      }
   
       // Associe le second personnage au jeu
+      if(data.SecondCharacterId){
       const RequestCharacterSecond = {
         Id: uuidv4(),
         GameId: gameId,
         CharacterId: data.SecondCharacterId
       };
       await model.GameCharacter.create(RequestCharacterSecond);
+    }
+    if(data.OriginalFirstCharacterId){
       const RequestOriginalCharacterFirst = {
         Id: uuidv4(),
         GameId: gameId,
         CharacterId: data.OriginalFirstCharacterId
       };
       await model.GameGamer.create(RequestOriginalCharacterFirst);
-  
+    }
+    if(data.OriginalSecondCharacterId){
       // Associe le second personnage au jeu
       const RequestOriginalCharacterSecond = {
         Id: uuidv4(),
@@ -96,7 +102,7 @@ const CreateANewGame = async (UserId, data, imagePath) => {
         CharacterId: data.OriginalSecondCharacterId
       };
       await model.GameCharacter.create(RequestOriginalCharacterSecond);
-  
+    }
       // Une fois toutes les opérations terminées, redirige l'utilisateur
       console.log('Redirection après création de la fiction');
       return { success: true }; // Tu peux ici déclencher une redirection dans ton frontend

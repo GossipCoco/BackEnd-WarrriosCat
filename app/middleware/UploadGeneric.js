@@ -8,7 +8,7 @@ const createUploadMiddleware = (uploadDir) => {
 
   let storage = multer.diskStorage({
     destination: (req, file, cb) => {
-      const __dirname = 'C:\\Users\\gossi\\OneDrive\\Documents\\project\\Project-Warriors\\front-app-v3\\public\\images\\';
+      const __dirname = 'C:\\Users\\gossi\\Documents\\Project\\Project-Warriors\\front-app-v3\\public';
       const destinationPath = path.join(__dirname, uploadDir);
       if (!fs.existsSync(destinationPath)) {
         fs.mkdirSync(destinationPath, { recursive: true });

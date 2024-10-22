@@ -80,7 +80,7 @@ const GetUserById = (id) => {
         where: { Id: id },
         include: [
             { model: model.Gamer, 
-                limit: 1,
+                limit: 4,
             }, 
             { model: model.Message,  where : { Status: 'unread'} },
             { model: model.Points },

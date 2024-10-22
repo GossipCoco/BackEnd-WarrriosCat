@@ -1,6 +1,6 @@
 const { DataTypes } = require('sequelize');
 const connection = require('../DataLayer/connection');
-
+const functions = require ('./Function')
 const Book = connection.define(
   "Book",
   {
@@ -52,7 +52,12 @@ const Book = connection.define(
     IllustrationSix: {
       type: DataTypes.STRING(255),
       allowNull: true,
-    }
+    },    
+    PublishDate: {
+      type: 'DATETIME',
+      defaultValue: new Date(functions.toDateTime(Date.now())).toISOString()
+    },
+
   },
   {
     freezeTableName: true,

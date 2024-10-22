@@ -11,4 +11,7 @@ ArcBook.GetAllBooks = (req, res) => {
 ArcBook.GetBookByTitle = (req, res) => {
     handleResponse(res, query.GetBookByTitle(req.params.id))
 }
+ArcBook.GetLastPublishedBook = (req, res) => {
+    handleResponse(res, query.GetLastPublishedBook())
+}
 module.exports = ArcBook

@@ -35,9 +35,16 @@ const GetBookByTitle = (title) =>{
         }]
     })
 }
+const GetLastPublishedBook = () => {
+    console.log("************ GetLastPublishedBook ************")
+    return model.Book.findOne({
+        limit: 1,
+        order: [['PublishDate', 'DESC']],
+    })
+}
 module.exports = {
     GetAllArcsWithBooks,
     GetAllBooks,
-    GetBookByTitle
-
+    GetBookByTitle,
+    GetLastPublishedBook
 }

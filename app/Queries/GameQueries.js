@@ -70,7 +70,7 @@ const GetAllLastFiveGames = (nav) => {
     limit: nav.step,
     attributes: ['Id', 'DateCreation'],
     where:{TypeGameId : 'Fiction'},
-    order: [["DateCreation", "ASC"]],
+    order: [["DateCreation", "DESC"]],
     include: [
       { model: model.UserGame },
       {

@@ -27,7 +27,10 @@ const GetBookByTitle = (title) =>{
         where: {
             Title: title
         },
-        include:[{
+        include:[
+            {
+                model: model.Arc
+            },{
             model: model.BookCharacter,
             include: [{
                 model: model.Character
@@ -40,6 +43,9 @@ const GetLastPublishedBook = () => {
     return model.Book.findOne({
         limit: 1,
         order: [['PublishDate', 'DESC']],
+        include:[{
+            model: model.Arc
+        }]
     })
 }
 module.exports = {

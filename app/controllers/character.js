@@ -57,4 +57,7 @@ Character.CreateAnOriginalCharacter = (req, res) => {
     const imageFile = req.files[0].filename;
     handleResponse(res, query.CreateAnOriginalCharacter(usr, data, imageFile ))
 }
+Character.EditOriginalCharacter = (req, res) => {
+    handleResponse(res, query.EditOriginalCharacter(req.params.id, req.body))
+}
 module.exports = Character

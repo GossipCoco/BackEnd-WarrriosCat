@@ -74,12 +74,13 @@ const countAllCharacters = () => {
   }
   const GetAllCharactersByUser = (user) => {
     return model.Character.findAll({
+      order: [["UserName", "ASC"]],
       include: [        
         { model: model.Grade },
         {
           model: model.Clan,
           include: [{ model: model.Location }],
-          order: [["Id", "ASC"]],
+          
         },
         {
           model: model.Warrior,
@@ -95,7 +96,6 @@ const countAllCharacters = () => {
       ],
     });
   };
-
   
   const GetCharacterByName = (name) => {
     console.log("**** GetCharacterByName ****", name);
@@ -291,13 +291,42 @@ const CreateAnOriginalCharacter = (usr, data, imagePath) => {
   const firstRequest = model.Gamer.create(newOriginaleCharacter)
   promises.push(firstRequest)
   return firstRequest
-  .then((response) => {
-    return Promise.all(promises);
-  })
+    .then((response) => {
+      return Promise.all(promises);
+    })
     .catch((err) => {
       console.log(err);
       return Promise.reject(err);
     })
+}
+
+const EditOriginalCharacter = (id, data) => {
+  console.log("******CreateAnOriginalCharacter******",id, data);
+  const promises = []
+  const field = data.typeField
+  if(field === 'Description'){
+    const request = model.Gamer.update({Description: data.Description}, { where: { UserName: { [model.Utils.Op.like]: `%${id}%` } } })
+    return ReturnPromise(promises, request)
+  }else if(field === 'Biography'){
+    const request = model.Gamer.update({Biography: data.Biography}, { where: { UserName: { [model.Utils.Op.like]: `%${id}%` } } })
+    return ReturnPromise(promises, request)
+  }else if(field === 'Biography'){
+    const request = model.Gamer.update({Biography: data.Biography}, { where: { UserName: { [model.Utils.Op.like]: `%${id}%` } } })
+    return ReturnPromise(promises, request)
+  }else if(field === 'Personnality'){
+    return ReturnPromise(promises, request)
+  }
+}
+const ReturnPromise = (promise, request) => {
+  promise.push(request)
+  return request
+  .then((response) => {
+    return Promise.all(promises);
+  })
+  .catch((err) => {
+    console.log(err);
+    return Promise.reject(err);
+  })
 }
   module.exports = {
     countAllCharacters,
@@ -314,5 +343,6 @@ const CreateAnOriginalCharacter = (usr, data, imagePath) => {
     GetOriginaleCharacterByUser,
     GetOneOriginaleCharacterByName,
     CreateANewCharacter,
-    CreateAnOriginalCharacter
+    CreateAnOriginalCharacter,
+    EditOriginalCharacter
   }

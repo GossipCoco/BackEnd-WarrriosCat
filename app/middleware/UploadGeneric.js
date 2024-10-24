@@ -3,12 +3,13 @@ const multer = require("multer");
 const maxSize = 2 * 3550 * 3550;
 const fs = require('fs');
 const path = require('path');
+const config = require('../config/db.config');
 
 const createUploadMiddleware = (uploadDir) => {
 
   let storage = multer.diskStorage({
     destination: (req, file, cb) => {
-      const __dirname = 'C:\\Users\\gossi\\Documents\\Project\\Project-Warriors\\front-app-v3\\public';
+      const __dirname = config.__dirname;
       const destinationPath = path.join(__dirname, uploadDir);
       if (!fs.existsSync(destinationPath)) {
         fs.mkdirSync(destinationPath, { recursive: true });

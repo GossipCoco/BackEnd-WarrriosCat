@@ -4,6 +4,7 @@ module.exports = {
       secret: 'gossip-coco-key',
       expire: '24h'
     },
+    __dirname:"C:\\Users\\gossi\\Documents\\Project\\Project-Warriors\\front-app-v3\\public",
     BDD: {
       SQLServer: {
         "username": "sa",

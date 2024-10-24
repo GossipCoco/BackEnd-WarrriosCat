@@ -1,13 +1,13 @@
 const util = require("util");
 const multer = require("multer");
 const maxSize = 2 * 1920 * 1920;
-const config = require('../../config')
+const config = require('../config/db.config');
 
 const queries = require('../Queries/UserQueries')
 
 let storage = multer.diskStorage({
   destination: (req, file, cb) => {  
-    const __dirname = config.UploadBack.url
+    const __dirname = config.__dirname
     console.log('__basedir : ', __dirname)  
     cb(null, __dirname + "/images/backgroundUser/");
   },

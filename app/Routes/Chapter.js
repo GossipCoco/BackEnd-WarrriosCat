@@ -3,7 +3,7 @@ const express = require('express');
 const Chapter = require('../controllers/chapter');
 
  // Assume this is your multer config
-const createUploadMiddleware = require('../middleware/UploadGeneric');
+ const upload = require('../middleware/UploadGeneric')('/images/fictions'); // Chemin correct ici
 const router = express.Router();
 
 router
@@ -11,7 +11,7 @@ router
 .get('/GetAChapterById/:id', Chapter.GetAChapterById)
 .get('/GetAChapterByName/:id', Chapter.GetAChapterByName)
 .post('/GetLastChapterOfAFiction/:id', Chapter.GetLastChapterOfAFiction)
-.post('/CreateAChapitre/:id', createUploadMiddleware('Fictions/').single('image'), Chapter.CreateANewChapter)
+.post('/CreateAChapitre/:id', upload.single('image'), Chapter.CreateANewChapter)
 .post('/EditChapter/:id', Chapter.EditChapter)
 
 module.exports = router;

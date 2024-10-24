@@ -1,10 +1,11 @@
 const util = require("util");
 const multer = require("multer");
 const maxSize = 2 * 1920 * 1920;
+const config = require('../config/db.config');
 
 let storage = multer.diskStorage({
   destination: (req, file, cb) => {  
-    const __dirname = 'C:\\Users\\gossi\\Documents\\Project\\Project-Warriors\\front-app-v3\\public'    
+    const __dirname = config.__dirname    
     console.log('__basedir : ', __dirname)  
     cb(null, __dirname + "/images/avatars/");
   },

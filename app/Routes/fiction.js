@@ -1,6 +1,6 @@
 const express = require('express');
 const Fiction = require('../controllers/fiction');
-const createUploadMiddleware = require('../middleware/UploadGeneric'); 
+const upload = require('../middleware/UploadGeneric')('/images/fictions'); // Chemin correct ici
 const router = express.Router();
 
 router
@@ -13,7 +13,7 @@ router
    .post('/GetAllCommentsByFiction/:id', Fiction.GetAllCommentsByFiction) 
    .post('/GetAllFictionsByName/:id', Fiction.GetAllFictionsByName)  
    .post('/CreateCommentForAFiction/:id', Fiction.CreateCommentForAFiction)
-   .post('/UpdateFictionIllustration/:id',  createUploadMiddleware('Fictions/').single('image'), Fiction.UpdateFictionIllustration)
+   .post('/UpdateFictionIllustration/:id', upload.single('image'), Fiction.UpdateFictionIllustration)
    
 
 module.exports = router;

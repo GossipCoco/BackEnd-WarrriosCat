@@ -28,7 +28,7 @@ const Gamer = connection.define(
                 key: 'Id' // Nom de la clé de référence
             }
         },
-        UserName: {
+        CurrentName: {
             type: DataTypes.STRING(255),
             allowNull: false
         },

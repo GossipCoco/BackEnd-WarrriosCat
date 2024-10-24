@@ -68,8 +68,8 @@ const countAllCharacters = () => {
     console.log("GetAllNamesAndIdsOriginaCharacters", usr)
     return model.Gamer.findAll({
       where: { UserId: usr },
-      attributes: ['Id', 'UserName'],
-      order: [["UserName", "ASC"]]
+      attributes: ['Id', 'CurrentName'],
+      order: [["CurrentName", "ASC"]]
     })
   }
   const GetAllCharactersByUser = (user) => {
@@ -201,13 +201,13 @@ const GetOriginaleCharacterByUser = (usr, nav) => {
     where: { UserId: usr }, 
     offset: nav.step * nav.current,
     limit: nav.step,
-    order: [["UserName", "ASC"]],
+    order: [["CurrentName", "ASC"]],
   })
 }
 const GetOneOriginaleCharacterByName = (Name) => {  
   console.log("GetOneOriginaleCharacterByUser", Name);
   return model.Gamer.findOne({
-    where: { Username: Name }, 
+    where: { CurrentName: Name }, 
     include:[{
       model: model.Clan
     },
@@ -275,7 +275,7 @@ const CreateAnOriginalCharacter = (usr, data, imagePath) => {
     createdAt: date,
     updatedAt: date,
     UserId: usr,
-    UserName: data.UserName,
+    CurrentName: data.UserName,
     Image:Image,
     Description: data.Description,
     Biography: data.Description,

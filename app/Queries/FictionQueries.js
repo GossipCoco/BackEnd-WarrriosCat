@@ -170,8 +170,6 @@ const GetAllFictionsByName = (name, nav) => {
     ],
   });
 };
-
-
 const GetAllCommentsByFiction = (id, nav) => {
   return model.Comments.findAll({
     include:[
@@ -243,8 +241,7 @@ const CreateCommentForAFiction = (id, data) => {
       return Promise.reject(err);
     });
 }
-const UpdateFictionIllustration = (id, image) => {
-  
+const UpdateFictionIllustration = (id, image) => {  
   console.log("**** UpdateFictionIllustration ****",id, image);
   const promises = []
   const newImage = '/images/Fictions/'+image
@@ -260,6 +257,25 @@ const UpdateFictionIllustration = (id, image) => {
       return Promise.reject(err);
     });
 }
+const UploadFictionBackgroundIllustration = (id, image) => {
+  console.log("**** UploadFictionBackgroundIllustration ****",id, image);
+  const promises = []
+  const Image = '/images/Fictions/'+image
+    const requestCreateIllustrationn = model.Illustration.create({
+      Id: Image,
+      DateCreation: new Date().toISOString()
+    }
+  )
+  promises.push(requestCreateIllustrationn)
+  return(requestCreateIllustrationn)   
+  .then((w)=> {
+    const requestFictionIllustration = model.FictionIllustration.update({IllustrationId: Image}, { where: { FictionId: id }})
+    promises.push(requestFictionIllustration)
+    return requestFictionIllustration
+    .then(w => { return Promise.all(promises) })
+    .catch(err => { console.log("ERROR: ", err) })
+  })
+}
 const queries = {
   countAllFictionsOnBases,
   countAllMyFictions,
@@ -271,7 +287,8 @@ const queries = {
   CreateCommentForAFiction,
   GetAllCommentsByFiction,
   GetAllFictionsByUser,
-  UpdateFictionIllustration
+  UpdateFictionIllustration,
+  UploadFictionBackgroundIllustration
 };
 
 module.exports = queries;

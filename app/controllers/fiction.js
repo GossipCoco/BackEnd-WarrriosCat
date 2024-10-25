@@ -68,6 +68,11 @@ Fiction.UpdateFictionIllustration = async (req, res) => {
   const id = req.params.id
   const imagePath = req.file ? req.file.filename : null;
   handleResponse(res, queries.UpdateFictionIllustration(id, imagePath))
-
+}
+Fiction.UploadFictionBackgroundIllustration = async (req, res) => {
+  console.log(req.params.id)
+  const id = req.params.id
+  const imagePath = req.file ? req.file.filename : null;
+  handleResponse(res, queries.UploadFictionBackgroundIllustration(id, imagePath))
 }
 module.exports = Fiction;

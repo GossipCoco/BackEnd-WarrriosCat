@@ -13,6 +13,7 @@ router
    .post('/GetAllCommentsByFiction/:id', Fiction.GetAllCommentsByFiction) 
    .post('/GetAllFictionsByName/:id', Fiction.GetAllFictionsByName)  
    .post('/CreateCommentForAFiction/:id', Fiction.CreateCommentForAFiction)
+   .post('/UploadFictionBackgroundIllustration/:id', upload.single('image'), Fiction.UploadFictionBackgroundIllustration)
    .post('/UpdateFictionIllustration/:id', upload.single('image'), Fiction.UpdateFictionIllustration)
    
 

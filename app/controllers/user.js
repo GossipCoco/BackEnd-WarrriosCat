@@ -53,6 +53,7 @@ User.GetUserById = (req, res) => {
   handleResponse(res, query.GetUserById(id))
 }
 User.GetUserByUsername = (req, res) => {
+  console.log(req.params.id)
   const id = req.params.id;
   handleResponse(res, query.GetUserByUsername(id))
 }

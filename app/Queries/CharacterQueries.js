@@ -305,15 +305,13 @@ const EditOriginalCharacter = (id, data) => {
   const promises = []
   const field = data.typeField
   if(field === 'Description'){
-    const request = model.Gamer.update({Description: data.Description}, { where: { UserName: { [model.Utils.Op.like]: `%${id}%` } } })
+    const request = model.Gamer.update({Description: data.Description}, { where: { CurrentName: { [model.Utils.Op.like]: `%${id}%` } } })
     return ReturnPromise(promises, request)
   }else if(field === 'Biography'){
-    const request = model.Gamer.update({Biography: data.Biography}, { where: { UserName: { [model.Utils.Op.like]: `%${id}%` } } })
-    return ReturnPromise(promises, request)
-  }else if(field === 'Biography'){
-    const request = model.Gamer.update({Biography: data.Biography}, { where: { UserName: { [model.Utils.Op.like]: `%${id}%` } } })
+    const request = model.Gamer.update({Biography: data.Biography}, { where: { CurrentName: { [model.Utils.Op.like]: `%${id}%` } } })
     return ReturnPromise(promises, request)
   }else if(field === 'Personnality'){
+    const request = model.Gamer.update({Personnality: data.Personnality}, { where: { CurrentName: { [model.Utils.Op.like]: `%${id}%` } } })
     return ReturnPromise(promises, request)
   }
 }
@@ -321,7 +319,7 @@ const ReturnPromise = (promise, request) => {
   promise.push(request)
   return request
   .then((response) => {
-    return Promise.all(promises);
+    return Promise.all(promise);
   })
   .catch((err) => {
     console.log(err);

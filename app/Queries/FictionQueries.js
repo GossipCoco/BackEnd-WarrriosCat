@@ -91,6 +91,20 @@ const GetAllFictionsOnBase = (nav) => {
     ],
   });
 }
+const GetAllAUthors = () => {
+  console.log("********  GetAllAUthors ********");
+  console.log("******** GetAllAuthors ********");
+  return model.User.findAll({
+    attributes: ['Id', 'Username'],  // Les attributs que vous voulez afficher pour les auteurs
+    include: [
+      {
+        model: model.Fiction,
+        attributes: [],  // Aucune donnée de `Fiction` n'est nécessaire, on veut juste vérifier l'existence
+      },
+    ],
+    distinct: true,  // Assure de récupérer des résultats uniques
+  });
+};
 const GetAllFictionsByUser = (usr, nav) => {  
   console.log("********  GetAllFictionsByUser ********", usr, nav);
   return model.Fiction.findAll({
@@ -288,7 +302,8 @@ const queries = {
   GetAllCommentsByFiction,
   GetAllFictionsByUser,
   UpdateFictionIllustration,
-  UploadFictionBackgroundIllustration
+  UploadFictionBackgroundIllustration,
+  GetAllAUthors
 };
 
 module.exports = queries;

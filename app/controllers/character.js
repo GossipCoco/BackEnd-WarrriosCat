@@ -60,4 +60,7 @@ Character.CreateAnOriginalCharacter = (req, res) => {
 Character.EditOriginalCharacter = (req, res) => {
     handleResponse(res, query.EditOriginalCharacter(req.params.id, req.body))
 }
+Character.GetAllCharactersByNameGradeAndClan = (req, res) => {
+    handleResponse(res, query.GetAllCharactersByNameGradeAndClan(req.body))
+}
 module.exports = Character

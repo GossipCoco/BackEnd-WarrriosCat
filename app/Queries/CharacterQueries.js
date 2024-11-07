@@ -173,6 +173,10 @@ const GetCharacterByNameSearch = (name) => {
 };
 const GetAllCharactersByNameGradeAndClan = (data) => {
   console.log("GetAllCharactersByNameGradeAndClan", data);
+  const typeSearch = data.typeSearch
+  const Name = data.Name
+  const Grade = data.Grade
+  const Clan = data.Clan
 }
 const GetAllNamesOfAllCharacters = async () => {
   console.log("GetAllNamesOfAllCharacters");

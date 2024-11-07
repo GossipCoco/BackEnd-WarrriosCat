@@ -93,13 +93,9 @@ Message.belongsTo(User, { foreignKey: 'SenderId', as: 'Sender' }); // Un message
 User.hasMany(Message, { foreignKey: 'ReceiverId' }); // Un utilisateur peut recevoir plusieurs messages
 Message.belongsTo(User, { foreignKey: 'ReceiverId', as: 'Receiver' }); // Un message appartient à un utilisateur qui le reçoit
 
-
 Gamer.belongsTo(User, {foreignKey: "UserId"})
 User.hasMany(Gamer)
 
-
-// Gamer.belongsTo(Clan, { foreignKey: 'ClanId' })
-// Clan.hasMany(Game)
 
 // CHARACTER
 
@@ -109,7 +105,6 @@ Grade.hasMany(Character)
 Character.belongsTo(Clan, { foreignKey: "ClanId" })
 Clan.hasMany(Character);
 
-
 Character.belongsTo(Warrior, { foreignKey: "WarriorId" })
 Warrior.hasOne(Character, { foreignKey: "Id" });
 
@@ -118,8 +113,6 @@ Clan.hasMany(Warrior);
 
 Location.belongsTo(Clan,{ foreignKey: "ClanId" });
 Clan.hasMany(Location);
-
-
 
 // GAME
 

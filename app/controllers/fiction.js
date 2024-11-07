@@ -75,4 +75,7 @@ Fiction.UploadFictionBackgroundIllustration = async (req, res) => {
   const imagePath = req.file ? req.file.filename : null;
   handleResponse(res, queries.UploadFictionBackgroundIllustration(id, imagePath))
 }
+Fiction.GetAllAUthors = (req, res) => {
+  handleResponse(res, queries.GetAllAUthors())
+}
 module.exports = Fiction;

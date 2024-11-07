@@ -7,6 +7,7 @@ router
    .get('/CountAllFictionsOnBases', Fiction.countAllFictionsOnBases)
    .get('/CountAllMyFictions/:id', Fiction.countAllMyFictions)
    .get('/CountTotalWordBuUserV2/:id', Fiction.CountTotalWordBuUserV2)
+   .get('/GetAllAUthors', Fiction.GetAllAUthors)
    .post('/GetAllFictionsByUserId/:id', Fiction.GetAllFictionsByUser)
    .post('/GetAllFictionsOfALlUsers', Fiction.GetAllFictionsOnBase)
    .post('/CountTotalWordBuUser/:id', Fiction.CountTotalWordBuUser)  

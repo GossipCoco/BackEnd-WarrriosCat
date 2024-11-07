@@ -22,5 +22,6 @@ router
 .post('/createANewCharacter', uploadCharacter.single('image'), Character.CreateANewCharacter)
 .post('/CreateAnOriginalCharacter/:id',uploadOriginalCharacter.single('image'), Character.CreateAnOriginalCharacter)
 .post('/EditOriginalCharacter/:id', Character.EditOriginalCharacter)
+.post('/GetAllCharactersByNameGradeAndClan', Character.GetAllCharactersByNameGradeAndClan)
 
 module.exports = router

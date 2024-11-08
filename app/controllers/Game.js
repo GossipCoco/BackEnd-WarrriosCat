@@ -20,12 +20,12 @@ Game.CreateANewGame = (req, res) => {
   const UserId = req.params.id;
   const imagePath = req.file ? req.file.filename : null; // Get the path of the uploaded image if present
   // Destructure additional data if needed
-  const { Title, Summary, FirstCharacterId, SecondCharacterId, LocationId } = req.body;
+  const { Title, Summary, FirstCharacterId, SecondCharacterId, LocationId, ClanId, KindId, OriginalFirstCharacterId, OriginalSecondCharacterId, } = req.body;
   // Check if the necessary fields are provided
-  if (!Title || !Summary || !FirstCharacterId || !SecondCharacterId) {
+  if (!Title || !Summary || !FirstCharacterId || !SecondCharacterId ) {
     return res.status(400).send({ message: "All fields are required" });
   }
-  const data = { Title, Summary, FirstCharacterId, SecondCharacterId, LocationId };
+  const data = { Title, Summary, FirstCharacterId, SecondCharacterId, OriginalFirstCharacterId, OriginalSecondCharacterId, LocationId, ClanId, KindId };
   handleResponse(res, queries.CreateANewGame(UserId, data, imagePath))
 
   }

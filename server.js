@@ -14,20 +14,21 @@ const upload = multer();
 
 const Home = require('./app/Routes/Home')
 const User = require('./app/Routes/User')
-const Character = require('./app/routes/character')
-const Clan = require('./app/routes/clan')
-const Grade = require('./app/routes/grade')
+const Character = require('./app/Routes/character')
+const Clan = require('./app/Routes/clan')
+const Grade = require('./app/Routes/grade')
 const Image = require('./app/Routes/image')
-const Game = require('./app/routes/Game')
+const Game = require('./app/Routes/Game')
 const Fiction = require('./app/Routes/fiction')
-const chatgptRouter = require('./app/routes/chatgpt');
-const Event = require('./app/routes/event')
-const Quest = require('./app/routes/quest')
-const imagegenRouter  = require('./app/routes/imagegen');
-const ArcBook = require('./app/routes/ArcBook')
-const Rating = require('./app/routes/Rating')
-const Chapter = require('./app/routes/Chapter')
-const Message = require('./app/routes/Message')
+const chatgptRouter = require('./app/Routes/chatgpt');
+const Event = require('./app/Routes/event')
+const Quest = require('./app/Routes/quest')
+const imagegenRouter  = require('./app/Routes/imagegen');
+const ArcBook = require('./app/Routes/ArcBook')
+const Rating = require('./app/Routes/Rating')
+const Chapter = require('./app/Routes/Chapter')
+const Message = require('./app/Routes/Message')
+const Kind = require('./app/Routes/Kind')
 const corsOptions = {
     // origin: '*',
     origin: [
@@ -64,6 +65,7 @@ app
   .use('/chapter', Chapter)
   .use('/rating', Rating)
   .use('/message', Message)
+  .use('/Kind', Kind)
   .use(function (req, res) {
     res.setHeader('Content-Type', 'application/json');
     res.status(404).send({ result: 'error' });

@@ -27,7 +27,8 @@ const CreateANewGame = async (UserId, data, imagePath) => {
         Image: NewImagePath,
         GameId: gameId,
         DateCreation: date,
-        UserId: UserId
+        UserId: UserId,
+        ClanId: ClanId
       };
       await model.Fiction.create(requestNewFiction);
   

@@ -93,7 +93,6 @@ const GetAllFictionsOnBase = (nav) => {
 }
 const GetAllAUthors = () => {
   console.log("********  GetAllAUthors ********");
-  console.log("******** GetAllAuthors ********");
   return model.User.findAll({
     attributes: ['Id', 'Username'],  // Les attributs que vous voulez afficher pour les auteurs
     include: [
@@ -144,8 +143,9 @@ const GetAllFictionsByName = (name, nav) => {
     where: {
       Title: { [model.Utils.Op.like]: `%${name}%` },
     },
-    include:[ { model: model.Comments}],
-    include: [      
+    include: [
+      { model: model.Comments},
+      { model: model.FictionKind },
       {
         model: model.User,
         attributes: ['Id', 'UserName']

@@ -152,6 +152,5 @@ module.exports = {
   GetAllGamesByUser,
   GetFiveLastGameByUser,
   GetAllGamesByCharacter,
-
   AddANewCharacterToGameAndFiction,
 }

@@ -57,6 +57,8 @@ const {
   QuestKeyObject,
   GameGamer,
   Sequelize,
+  Kind,
+  FictionKind,
   sequelize: connection,
   Utils: {
     Op,
@@ -133,6 +135,8 @@ User.hasMany(Fiction);
 Comments.belongsTo(Fiction, { foreignKey: 'FictionId' });
 Fiction.hasMany(Comments);
 
+Fiction.belongsTo(Clan, { foreignKey: 'ClanId' })
+Clan.hasMany(Fiction)
 
 //CHAPTER
 
@@ -305,7 +309,11 @@ RelationCharacters.belongsTo(TypeRelation, {
   as: "TypeRelation",
 });
 
+FictionKind.belongsTo(Fiction, {foreignKey: 'FictionId'})
+Fiction.hasMany(FictionKind)
 
+FictionKind.belongsTo(Kind, {foreignKey: 'KindId'})
+Kind.hasMany(FictionKind)
 
 module.exports = {
   User,
@@ -362,6 +370,8 @@ module.exports = {
   KeyObject,
   QuestKeyObject,
   GameGamer,
+  Kind,
+  FictionKind,
   Sequelize,
   sequelize: connection,
   Utils: {

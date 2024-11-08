@@ -39,7 +39,15 @@ const CreateANewGame = async (UserId, data, imagePath) => {
         UserId: UserId
       };
       await model.UserGame.create(requestUserGame);
-  
+      
+      const requestFictionKind = {
+        Id:uuidv4(),
+        FictionId: FictionId,
+        KindId: data.KindId
+      }
+      
+      await model.FictionKind.create(requestFictionKind)
+
       // Vérifie si l'illustration existe déjà
       const existingIllustration = await model.Illustration.findOne({
         where: { Id: NewImagePath }

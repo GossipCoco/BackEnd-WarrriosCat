@@ -102,6 +102,18 @@ const countAllCharacters = () => {
     return model.Character.findOne({
       where: { CurrentName: name },
       include: [
+        {
+          model: model.GameCharacter,
+          attributes: ['Id'],
+          include: [{
+            attributes: ['Id'],
+            model: model.Game, include: [{
+              model: model.Fiction,            
+              attributes: ['Id', 'Title'],
+            }]
+
+          }]
+        },
         { model: model.Chronology },
         { model: model.Grade },
         {

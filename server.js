@@ -33,7 +33,8 @@ const corsOptions = {
     // origin: '*',
     origin: [
       'http://localhost:8081',
-      'http://192.168.1.14:8081'
+      'http://192.168.1.12:8081',
+      'http://192.168.1.23:8081'
     ],
     cors: {
       methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],

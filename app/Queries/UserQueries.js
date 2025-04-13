@@ -80,21 +80,13 @@ const GetUserById = (id) => {
         where: { Id: id },
         include: [
             { model: model.Gamer, 
-                limit: 4,
+                limit: 6,
                 attributes: ['Id', 'CurrentName', 'Image'],
             }, 
             { model: model.Message,  where : { Status: 'unread'} },
             { model: model.Points },
             { model: model.Notification },
-            {
-                model: model.Role,
-                include: [
-                    {
-                        model: model.RolePermission,
-                        include: [{ model: model.Permission }],
-                    },
-                ],
-            },
+            { model: model.Role },
             { model: model.Level }
         ],
     });

@@ -5,7 +5,7 @@ const router = express.Router();
 
 router
     .get('/', User.GetAllUsers)
-    .get('/:id', User.GetUserById)
+    .post('/:id', User.GetUserById)
     .get('/UserName/:id', User.GetUserByUsername)
     .get('/GemerById/:id', User.GetGamerById)
     .post('/login', User.Login)

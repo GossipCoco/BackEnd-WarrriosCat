@@ -63,6 +63,7 @@ const GetAllGamesByUser = (user, nav) => {
     ],
   });
 };
+
 const GetAllLastFiveGames = (nav) => {
   console.log("**** GetAllLastFiveGames **** nav : ", nav.step);
   return model.Game.findAll({

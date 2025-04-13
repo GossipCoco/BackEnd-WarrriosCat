@@ -137,7 +137,6 @@ const GetAllFictionsByUser = (usr, nav) => {
 }
 const GetAllFictionsByName = (name, nav) => {
   console.log("**** GetTheFictionByName ****", name, nav);
-  console.log(name, nav)
   return model.Fiction.findOne({
     order: [["Title", "ASC"]],
     where: {

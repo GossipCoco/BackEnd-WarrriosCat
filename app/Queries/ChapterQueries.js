@@ -68,7 +68,7 @@ const GetAChapterByName = (title) => {
   const GetFiveLastChapByUser = (usr) => {
     console.log("**** GetFiveLastChapByUser ****", usr);
     return model.Chapter.findAll({
-      limit: 3,
+      limit: 4,
       attributes: ['Id', 'Title', 'DateCreation', 'Image'],
       order: [['DateCreation', 'DESC']],
       include: [{

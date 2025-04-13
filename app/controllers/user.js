@@ -50,7 +50,8 @@ User.GetAllUsers = (req, res) => {
 }
 User.GetUserById = (req, res) => {
   const id = req.params.id;
-  handleResponse(res, query.GetUserById(id))
+  console.log("*********** GetUserById*********** : ", req.body)
+  handleResponse(res, query.GetUserById(id, req.body))
 }
 User.GetUserByUsername = (req, res) => {
   console.log(req.params.id)

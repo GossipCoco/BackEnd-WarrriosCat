@@ -74,13 +74,14 @@ const GetUserByEmail = (email) => {
     });
 };
 
-const GetUserById = (id) => {
-    console.log("**** Dashboard ID User ****", id);
+const GetUserById = (id, nav) => {
+    console.log("**** Dashboard ID User ****", id, nav);
     return model.User.findOne({
         where: { Id: id },
         include: [
             { model: model.Gamer, 
-                limit: 8,
+                offset: nav.step * nav.current,
+                limit: nav.step,
             }, 
             { model: model.Message,  where : { Status: 'unread'} },
             { model: model.Points },

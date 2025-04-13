@@ -103,8 +103,7 @@ const GetAllGamesByCharacter = (character, nav) => {
 }
 const GetFiveLastGameByUser = (usr) => {
   console.log("**** GetFiveLastGameByUser ****", usr);
-  console.log(new Date().toISOString() - 24 * 60 * 60 * 20000)
-  return model.Game.findAll({
+    return model.Game.findAll({
     limit: 3,
     attributes: ['Id', 'DateCreation'],
     order: [['DateCreation', 'DESC']],

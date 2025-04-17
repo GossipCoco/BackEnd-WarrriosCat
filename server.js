@@ -51,6 +51,9 @@ app
   .use(express.json())
   .use(bodyParser.json({ limit: '100mb', extended: true }))
   .use(express.urlencoded({ extended: true }))
+  .use('/images', express.static('public/images', {
+    maxAge: '30d', // Cache pendant 30 jours
+  }))
   .use(helmet())
   // .use(limiter)
   .use('/Home', Home)

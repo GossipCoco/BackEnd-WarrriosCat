@@ -13,7 +13,7 @@ const countAllCharacters = () => {
     return functions.countFuntion(request)
   };
   const CountNbOriginaleCharacterByUser = (usr) => {  
-    console.log("**** countAllCharacters   *****************");
+    console.log("**** countAllCharacters   *****************", usr);
     const request = model.Gamer.findAndCountAll({
       where: { UserId: usr },
       attributes: ['Id']

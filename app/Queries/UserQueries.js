@@ -98,7 +98,6 @@ const GetUserByUsername = (username) => {
         
         include: [
             { model: model.Gamer,
-                limit:3,
                 order:[["CurrentName", "ASC"]]
             }, 
             { model: model.Points },

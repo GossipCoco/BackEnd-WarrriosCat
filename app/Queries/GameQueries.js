@@ -76,7 +76,7 @@ const GetAllLastFiveGames = (nav) => {
       { model: model.UserGame },
       {
         model: model.Fiction,
-        attributes: ['Id', 'Title', 'Summary', 'Image', 'DateCreation']
+        attributes: ['Id', 'Title', 'Summary', 'Image']
         
       }]
   })

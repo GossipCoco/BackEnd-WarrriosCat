@@ -2,17 +2,11 @@ const { v4: uuidv4 } = require('uuid');
 const model = require('../Models');
 require('../Models/associations');
 
+const OrderName = ['Name', 'ASC']
+
 const GetAllClans = () => {
     return model.Clan.findAll({
-      order: [
-        ['Name', 'ASC'],
-      ],
-      include: [
-        {
-          model: model.Location,
-        },
-      ],
-      order: [["Name", "ASC"]],
+      order: [OrderName]
     });
   };
   const GetClanById = (id) => {
@@ -21,12 +15,9 @@ const GetAllClans = () => {
       where: { Id: id },
       include: [
         {
-          model: model.Location,
-        },
-        {
           model: model.Warrior,
           attributes: ['Name'],
-          order: [["Name", "ASC"]],
+          order: [OrderName],
           include: [
             {
               model: model.Character,
@@ -58,7 +49,9 @@ const GetAllClans = () => {
   };
   const GetAllLocations = () => {
     console.log("**** GetAllLocations ****");
-    return model.Location.findAll({})
+    return model.Location.findAll({
+      order: [OrderName]
+    })
   }
   const GetLocationById = (id) => {
     console.log("**** GetLocationById ****", id);
@@ -69,7 +62,6 @@ const GetAllClans = () => {
       }
     })
   }
-  
   
 module.exports = {
     GetAllClans,

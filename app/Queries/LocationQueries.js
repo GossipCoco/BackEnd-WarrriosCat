@@ -17,11 +17,11 @@ const GetAllClans = () => {
         {
           model: model.Warrior,
           attributes: ['Name'],
-          order: [OrderName],
           include: [
             {
               model: model.Character,
               attributes: ['Id','CurrentName', 'Image'],
+              
             },
           ],
         },

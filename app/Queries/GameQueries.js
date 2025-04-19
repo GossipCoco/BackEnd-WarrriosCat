@@ -104,7 +104,7 @@ const GetAllGamesByCharacter = (character, nav) => {
 const GetFiveLastGameByUser = (usr) => {
   console.log("**** GetFiveLastGameByUser ****", usr);
     return model.Game.findAll({
-    limit: 3,
+    limit: 4,
     attributes: ['Id', 'DateCreation'],
     order: [['DateCreation', 'DESC']],
     where: {

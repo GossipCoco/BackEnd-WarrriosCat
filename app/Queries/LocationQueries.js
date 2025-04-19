@@ -4,7 +4,8 @@ require('../Models/associations');
 
 const OrderName = ['Name', 'ASC']
 
-const GetAllClans = () => {
+const GetAllClans = (nav) => {
+  console.log("**** GetClanById ****", nav)
     return model.Clan.findAll({
       order: [OrderName]
     });

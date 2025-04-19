@@ -3,7 +3,7 @@ const { handleResponse } = require("../Functions/handleResponse");  // Importer 
 const Clan = {};
 
 Clan.GetAllClans = (req, res) => {
-  handleResponse(res, query.GetAllClans())  
+  handleResponse(res, query.GetAllClans(req.body))  
 };
 Clan.GetClanById = (req, res) => {
   const id = req.params.id
@@ -14,7 +14,7 @@ Clan.GetClanByNameClan = (req, res) => {
   handleResponse(res, query.GetClanByNameClan(id)) 
 }
 Clan.GetAllLocations = (req, res) => {
-  handleResponse(res, query.GetAllLocations()) 
+  handleResponse(res, query.GetAllLocations(req.body)) 
 }
 Clan.GetLocationById = (req, res) => {
   const id = req.params.id

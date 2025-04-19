@@ -6,7 +6,6 @@ const functions = require('../Functions/countFunctions')
 
 const OrderName = ['Name', 'ASC']
 
-
 const countAllClans = () => {
   console.log("******* countAllClans ********");
   const promises = []
@@ -14,8 +13,13 @@ const countAllClans = () => {
   promises.push(request)  
   return functions.countFuntion(request)
 }
-
-
+const countAllLocations = () => {
+  console.log("******* countAllLocations ********");
+  const promises = []
+  const request = model.Location.findAndCountAll({});
+  promises.push(request)  
+  return functions.countFuntion(request)
+}
 const GetAllClans = (nav) => {
   console.log("**** GetClanById ****", nav)
     return model.Clan.findAll({      
@@ -80,6 +84,7 @@ const GetAllClans = (nav) => {
   
 module.exports = {
     countAllClans,
+    countAllLocations,
     GetAllClans,
     GetClanById,
     GetClanByNameClan,

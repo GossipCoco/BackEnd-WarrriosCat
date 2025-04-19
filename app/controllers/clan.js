@@ -5,8 +5,9 @@ const Clan = {};
 Clan.countAllClans = async (req, res) => {
   handleResponse(res, query.countAllClans())
 }
-
-
+Clan.countAllLocations = async (req, res) => {
+  handleResponse(res, query.countAllLocations())
+}
 Clan.GetAllClans = (req, res) => {
   handleResponse(res, query.GetAllClans(req.body))  
 };

@@ -6,11 +6,12 @@ const router = express.Router()
 
 router
 .get('/countAllClans', Clan.countAllClans)
+.get('/countAllLocations', Clan.countAllLocations)
 .post('/GetAllLocations', Clan.GetAllLocations)
 .post('/', Clan.GetAllClans)
 .get('/:id', Clan.GetClanById)
 .get('/search/:name', Clan.GetClanById)
-.get('/Location/GetAllLocations', Clan.GetAllLocations)
+.post('/Location/GetAllLocations', Clan.GetAllLocations)
 .get('/Location/:id', Clan.GetLocationById)
 
 

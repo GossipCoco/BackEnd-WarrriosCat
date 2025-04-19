@@ -2,11 +2,25 @@ const { v4: uuidv4 } = require('uuid');
 const model = require('../Models');
 require('../Models/associations');
 
+const functions = require('../Functions/countFunctions')
+
 const OrderName = ['Name', 'ASC']
+
+
+const countAllClans = () => {
+  console.log("******* countAllClans ********");
+  const promises = []
+  const request = model.Clan.findAndCountAll({});
+  promises.push(request)  
+  return functions.countFuntion(request)
+}
+
 
 const GetAllClans = (nav) => {
   console.log("**** GetClanById ****", nav)
-    return model.Clan.findAll({
+    return model.Clan.findAll({      
+      offset: nav.step * nav.current,
+      limit: nav.step,
       order: [OrderName]
     });
   };
@@ -65,6 +79,7 @@ const GetAllClans = (nav) => {
   }
   
 module.exports = {
+    countAllClans,
     GetAllClans,
     GetClanById,
     GetClanByNameClan,

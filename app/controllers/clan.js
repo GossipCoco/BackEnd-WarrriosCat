@@ -2,6 +2,11 @@ const query = require("../Queries/LocationQueries");
 const { handleResponse } = require("../Functions/handleResponse");  // Importer la fonction
 const Clan = {};
 
+Clan.countAllClans = async (req, res) => {
+  handleResponse(res, query.countAllClans())
+}
+
+
 Clan.GetAllClans = (req, res) => {
   handleResponse(res, query.GetAllClans(req.body))  
 };

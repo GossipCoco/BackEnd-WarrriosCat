@@ -138,7 +138,6 @@ const GetAllFictionsByUser = (usr, nav) => {
 const GetAllFictionsByName = (name, nav) => {
   console.log("**** GetTheFictionByName ****", name, nav);
   return model.Fiction.findOne({
-    order: [["Title", "ASC"]],
     where: {
       Title: { [model.Utils.Op.like]: `%${name}%` },
     },

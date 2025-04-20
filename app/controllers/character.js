@@ -54,7 +54,10 @@ Character.CreateAnOriginalCharacter = (req, res) => {
     console.log("CreateAnOriginalCharacter")
     const usr = req.params.id
     const data = {...req.body}
-    const imageFile = req.files[0].filename;
+    const imageFile = req.file ? req.file.filename : null;
+    if (imageFile) {
+        data.Image = imageFile;
+      }
     handleResponse(res, query.CreateAnOriginalCharacter(usr, data, imageFile ))
 }
 Character.EditOriginalCharacter = (req, res) => {

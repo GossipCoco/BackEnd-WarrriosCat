@@ -3,7 +3,7 @@ const express = require('express');
 const Chapter = require('../controllers/chapter');
 
  // Assume this is your multer config
- const upload = require('../middleware/UploadGeneric')('/images/fictions'); // Chemin correct ici
+const upload = require('../middleware/UploadGeneric')('/images/fictions'); // Chemin correct ici
 const router = express.Router();
 
 router

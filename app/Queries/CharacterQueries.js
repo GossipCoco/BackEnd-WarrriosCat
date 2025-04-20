@@ -282,19 +282,19 @@ const CreateANewCharacter = (data) => {
 };
 const CreateAnOriginalCharacter = (usr, data, imagePath) => {
   console.log("******CreateAnOriginalCharacter******", usr, data, imagePath);
-  const date = new Date().toISOString()
-  const promises = []
-  const Id =  uuidv4()
-  const Image = '/images/Gamer/'+imagePath
+  const date = new Date().toISOString();
+  const Id = uuidv4();
+  const Image = '/images/Gamer/' + imagePath;
+
   const newOriginaleCharacter = {
     Id: Id,
     createdAt: date,
     updatedAt: date,
     UserId: usr,
     CurrentName: data.UserName,
-    Image:Image,
+    Image: Image,
     Description: data.Description,
-    Biography: data.Description,
+    Biography: data.Biography, // ici attention ! tu avais mis data.Description
     ClanId: data.ClanId,
     Status: data.Status,
     Genre: data.Genre,
@@ -303,17 +303,10 @@ const CreateAnOriginalCharacter = (usr, data, imagePath) => {
     KitName: data.KitName,
     ApprenticeName: data.ApprenticeName,
     WarriorName: data.WarriorName
-  }
-  const firstRequest = model.Gamer.create(newOriginaleCharacter)
-  promises.push(firstRequest)
-  return firstRequest
-    .then((response) => {
-      return Promise.all(promises);
-    })
-    .catch((err) => {
-      console.log(err);
-      return Promise.reject(err);
-    })
+  };
+
+  // Retourne directement la promesse
+  return model.Gamer.create(newOriginaleCharacter);
 }
 
 const EditOriginalCharacter = (id, data) => {

@@ -17,7 +17,8 @@ Chapter.GetFiveLastChapByUser = async (req, res) => {
   handleResponse(res, query.GetFiveLastChapByUser(req.params.id));
 };  
 Chapter.CreateANewChapter = async (req, res) => {
-  handleResponse(res, query.CreateANewChapter(req.params.id, req.body, req.file.filename));
+  console.log(req.file)
+  handleResponse(res, query.CreateANewChapter(req.params.id, req.body, req.file.originalname));
 };
 Chapter.EditChapter = async (req, res) => {
   handleResponse(res, query.EditChapter(req.params.id, req.body))

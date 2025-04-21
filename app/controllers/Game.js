@@ -18,7 +18,7 @@ Game.countAllGames = (req, res) => {
 Game.CreateANewGame = (req, res) => {
   console.log("CreateANewGame", req.file)
   const UserId = req.params.id;
-  const imagePath = req.file ? req.file.filename : null; // Get the path of the uploaded image if present
+  const imagePath = req.file ? req.file.originalname : null; // Get the path of the uploaded image if present
   // Destructure additional data if needed
   const { Title, Summary, FirstCharacterId, SecondCharacterId, LocationId, ClanId, KindId, OriginalFirstCharacterId, OriginalSecondCharacterId, } = req.body;
   // Check if the necessary fields are provided

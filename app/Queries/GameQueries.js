@@ -103,10 +103,11 @@ const GetAllGamesByCharacter = (character, nav) => {
 }
 const GetFiveLastGameByUser = (usr) => {
   console.log("**** GetFiveLastGameByUser ****", usr);
+
     return model.Game.findAll({
     limit: 4,
     attributes: ['Id', 'DateCreation'],
-    order: [['DateCreation', 'DESC']],
+    
     where: {
       TypeGameId: 'Fiction',
     },
@@ -115,6 +116,7 @@ const GetFiveLastGameByUser = (usr) => {
       {
         model: model.Fiction,
         attributes: ['Id', 'Title', 'Summary', 'Image'],
+        order: [['DateCreation', 'DESC']],
         where: {
           UserId: { [model.Utils.Op.like]: `%${usr}%` },
         },

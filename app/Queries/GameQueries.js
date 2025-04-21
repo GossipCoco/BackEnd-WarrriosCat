@@ -66,20 +66,26 @@ const GetAllGamesByUser = (user, nav) => {
 
 const GetAllLastFiveGames = (nav) => {
   console.log("**** GetAllLastFiveGames **** nav : ", nav.step);
-  return model.Game.findAll({
+  return model.Fiction.findAll({
     offset: nav.step,
     limit: nav.step,
-    attributes: ['Id', 'DateCreation'],
-    where:{TypeGameId : 'Fiction'},
+    attributes: ['Id', 'Title', 'Summary', 'Image'],
     order: [["DateCreation", "DESC"]],
-    include: [
-      { model: model.UserGame },
-      {
-        model: model.Fiction,
-        attributes: ['Id', 'Title', 'Summary', 'Image']
-        
-      }]
   })
+  // return model.Game.findAll({
+  //   offset: nav.step,
+  //   limit: nav.step,
+  //   attributes: ['Id', 'DateCreation'],
+  //   where:{TypeGameId : 'Fiction'},
+  //   order: [["DateCreation", "DESC"]],
+  //   include: [
+  //     { model: model.UserGame },
+  //     {
+  //       model: model.Fiction,
+  //       attributes: ['Id', 'Title', 'Summary', 'Image']
+        
+  //     }]
+  // })
 };
 const GetAllGamesByCharacter = (character, nav) => {  
   console.log("**** GetAllGamesByCharacter ****", character, nav);
@@ -103,27 +109,34 @@ const GetAllGamesByCharacter = (character, nav) => {
 }
 const GetFiveLastGameByUser = (usr) => {
   console.log("**** GetFiveLastGameByUser ****", usr);
-
-    return model.Game.findAll({
-    limit: 4,
-    attributes: ['Id', 'DateCreation'],
+    return model.Fiction.findAll({
+      limit: 4,
+      attributes: ['Id', 'Title', 'Summary', 'Image'],
+      order: [['DateCreation', 'DESC']],
+      where: {
+        UserId: { [model.Utils.Op.like]: `%${usr}%` },
+      },
+    })
+  //   return model.Game.findAll({
+  //   limit: 4,
+  //   attributes: ['Id', 'DateCreation'],
     
-    where: {
-      TypeGameId: 'Fiction',
-    },
-    include: [
-      { model: model.UserGame },
-      {
-        model: model.Fiction,
-        attributes: ['Id', 'Title', 'Summary', 'Image'],
-        order: [['DateCreation', 'DESC']],
-        where: {
-          UserId: { [model.Utils.Op.like]: `%${usr}%` },
-        },
-        include: [{ model: model.FictionIllustration}]
-      }
-    ]
-  })
+  //   where: {
+  //     TypeGameId: 'Fiction',
+  //   },
+  //   include: [
+  //     { model: model.UserGame },
+  //     {
+  //       model: model.Fiction,
+  //       attributes: ['Id', 'Title', 'Summary', 'Image'],
+  //       order: [['DateCreation', 'DESC']],
+  //       where: {
+  //         UserId: { [model.Utils.Op.like]: `%${usr}%` },
+  //       },
+  //       include: [{ model: model.FictionIllustration}]
+  //     }
+  //   ]
+  // })
 }
 const AddANewCharacterToGameAndFiction = (Id, data) => {
   console.log("**** AddANewCharacterToGameAndFiction ****", Id, data);

@@ -39,22 +39,17 @@ const CreateANewGame = async (UserId, data, imagePath) => {
         UserId: UserId
       };
       await model.UserGame.create(requestUserGame);
-      
       const requestFictionKind = {
         Id:uuidv4(),
         FictionId: FictionId,
         KindId: data.KindId
-      }
-      
+      }      
       await model.FictionKind.create(requestFictionKind)
-
       // Vérifie si l'illustration existe déjà
       const existingIllustration = await model.Illustration.findOne({
         where: { Id: NewImagePath }
-      });
-  
-      let illustrationId;
-  
+      });  
+      let illustrationId;  
       if (!existingIllustration) {
         // Crée une nouvelle illustration seulement si elle n'existe pas déjà
         const requestIllustration = {
@@ -67,7 +62,6 @@ const CreateANewGame = async (UserId, data, imagePath) => {
         // Si l'illustration existe déjà, récupère son ID
         illustrationId = existingIllustration.Id;
       }
-  
       // Lier la fiction à l'illustration
       const requestFictionIllustration = {
         Id: uuidv4(),

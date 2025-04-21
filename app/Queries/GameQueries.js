@@ -72,20 +72,6 @@ const GetAllLastFiveGames = (nav) => {
     attributes: ['Id', 'Title', 'Summary', 'Image'],
     order: [["DateCreation", "DESC"]],
   })
-  // return model.Game.findAll({
-  //   offset: nav.step,
-  //   limit: nav.step,
-  //   attributes: ['Id', 'DateCreation'],
-  //   where:{TypeGameId : 'Fiction'},
-  //   order: [["DateCreation", "DESC"]],
-  //   include: [
-  //     { model: model.UserGame },
-  //     {
-  //       model: model.Fiction,
-  //       attributes: ['Id', 'Title', 'Summary', 'Image']
-        
-  //     }]
-  // })
 };
 const GetAllGamesByCharacter = (character, nav) => {  
   console.log("**** GetAllGamesByCharacter ****", character, nav);
@@ -117,26 +103,6 @@ const GetFiveLastGameByUser = (usr) => {
         UserId: { [model.Utils.Op.like]: `%${usr}%` },
       },
     })
-  //   return model.Game.findAll({
-  //   limit: 4,
-  //   attributes: ['Id', 'DateCreation'],
-    
-  //   where: {
-  //     TypeGameId: 'Fiction',
-  //   },
-  //   include: [
-  //     { model: model.UserGame },
-  //     {
-  //       model: model.Fiction,
-  //       attributes: ['Id', 'Title', 'Summary', 'Image'],
-  //       order: [['DateCreation', 'DESC']],
-  //       where: {
-  //         UserId: { [model.Utils.Op.like]: `%${usr}%` },
-  //       },
-  //       include: [{ model: model.FictionIllustration}]
-  //     }
-  //   ]
-  // })
 }
 const AddANewCharacterToGameAndFiction = (Id, data) => {
   console.log("**** AddANewCharacterToGameAndFiction ****", Id, data);

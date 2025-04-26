@@ -8,6 +8,12 @@ const QuestParallax = connection.define(
         type: DataTypes.STRING,
         primaryKey: true,
       },
+      QuestId: {
+        type: DataTypes.STRING,
+      },
+      ParallaxId: {
+        type: DataTypes.STRING,
+      }
       
     },
     { freezeTableName: true, timestamps: false }

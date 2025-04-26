@@ -10,11 +10,12 @@ const QuestParallax = connection.define(
       },
       QuestId: {
         type: DataTypes.STRING,
+        allowNull: false
       },
       ParallaxId: {
         type: DataTypes.STRING,
-      }
-      
+        allowNull: false
+      }      
     },
     { freezeTableName: true, timestamps: false }
   );

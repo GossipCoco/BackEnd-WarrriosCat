@@ -95,34 +95,16 @@ const GetUserByUsername = (username) => {
     console.log("****GetUserByUsername ID User ****", username);
     return model.User.findOne({
         where: { UserName: username },
-        
         include: [
             { model: model.Gamer,
                 order:[["CurrentName", "ASC"]],
                 include: [{
-                    model: model.Clan
-                }]
-            }, 
-            { model: model.Points },
-            { model: model.Notification },
-            {
-                model: model.UserQuest,
-                include: [{ model: model.Quest }]
-            },
-            {
-                model: model.UserEvent,
-                include: [{
-                    model: model.Event
+                    model: model.Clan,
+                    attributes: ['Name'],
                 }]
             },
             {
                 model: model.Role,
-                include: [
-                    {
-                        model: model.RolePermission,
-                        include: [{ model: model.Permission }],
-                    },
-                ],
             },
             { model: model.Level },
         ],

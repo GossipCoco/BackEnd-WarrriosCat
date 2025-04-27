@@ -11,6 +11,9 @@ const Parallax = connection.define(
       Image: {
         type: DataTypes.STRING,
       },
+      ImageName: {
+        type: DataTypes.STRING,
+      },
       Position: {
         type: DataTypes.STRING,
       },

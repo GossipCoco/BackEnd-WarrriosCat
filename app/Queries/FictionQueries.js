@@ -143,7 +143,9 @@ const GetAllFictionsByName = (name, nav) => {
     },
     include: [
       { model: model.Comments},
-      { model: model.FictionKind },
+      { model: model.FictionKind,
+        attributes: ['KindId']
+       },
       {
         model: model.User,
         attributes: ['Id', 'UserName']

@@ -149,7 +149,11 @@ const GetAllFictionsByName = (name, nav) => {
         attributes: ['Id', 'UserName']
       },
       { model: model.FictionIllustration },
-      modelChapter,      
+      {
+        model: model.Chapter,
+        separate: true, // important pour permettre le tri
+        order: [['NumberChapter', 'ASC']]
+      },     
       {
         model: model.Game,
         include: [          

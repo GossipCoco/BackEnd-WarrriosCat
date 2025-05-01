@@ -52,7 +52,11 @@ const Book = connection.define(
     IllustrationSix: {
       type: DataTypes.STRING(255),
       allowNull: true,
-    },    
+    },
+    TypeBook: {
+      type: DataTypes.STRING(255),
+      allowNull: true,
+    },
     PublishDate: {
       type: 'DATETIME',
       defaultValue: new Date(functions.toDateTime(Date.now())).toISOString()

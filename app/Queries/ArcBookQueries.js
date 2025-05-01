@@ -43,14 +43,24 @@ const GetLastPublishedBook = () => {
     return model.Book.findOne({
         limit: 1,
         order: [['PublishDate', 'DESC']],
+        
         include:[{
             model: model.Arc
         }]
     })
 }
+const GetCurrentArc = () => {
+    console.log("************ GetCurrentArc ************")
+    return model.Arc.findOne({
+        limit: 1,
+        order: [['ArcNumber', 'DESC']],
+        attributes: ['Id','Title', 'Summary','Image' ],
+     })
+}
 module.exports = {
     GetAllArcsWithBooks,
     GetAllBooks,
     GetBookByTitle,
-    GetLastPublishedBook
+    GetLastPublishedBook,
+    GetCurrentArc
 }

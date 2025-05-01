@@ -14,4 +14,8 @@ ArcBook.GetBookByTitle = (req, res) => {
 ArcBook.GetLastPublishedBook = (req, res) => {
     handleResponse(res, query.GetLastPublishedBook())
 }
+ArcBook.GetCurrentArc = (req, res) => {
+    console.log("********* GetCurrentArc ******************")
+    handleResponse(res, query.GetCurrentArc())
+}
 module.exports = ArcBook

@@ -6,6 +6,7 @@ const router = express.Router()
 
 router
 .get('/GetBookByTitle/:id', ArcBook.GetBookByTitle)
+.get('/GetCurrentArc', ArcBook.GetCurrentArc)
 .get('/GetLastPublishedBook', ArcBook.GetLastPublishedBook)
 .post('/GetAllBooks', ArcBook.GetAllBooks)
 .post('/GetAllArcsWithBooks', ArcBook.GetAllArcsWithBooks)

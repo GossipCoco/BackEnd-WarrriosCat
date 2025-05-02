@@ -125,6 +125,27 @@ const AddANewCharacterToGameAndFiction = (Id, data) => {
       return Promise.reject(err);
     });
 }
+const AddANewOriginalCharacter = (Id, data) => {
+  console.log("**** AddANewOriginalCharacter ****", Id, data);
+  const promises = []
+  const requestFirstGameCharacter = {
+    Id: Id + ' - ' + data.CharacterId,
+    GameId: Id,
+    GamerId: data.CharacterId
+  }
+  console.log(requestFirstGameCharacter)
+  const request =  model.GameGamer.create(requestFirstGameCharacter)
+  return request
+  .then((w) => {
+    console.log(w)
+    return Promise.all(promises);
+  })
+  .catch((err) => {
+    console.log(err);
+    return Promise.reject(err);
+  });
+
+}
 module.exports = {
   countAllMyGames,
   countAllGames,
@@ -134,4 +155,5 @@ module.exports = {
   GetFiveLastGameByUser,
   GetAllGamesByCharacter,
   AddANewCharacterToGameAndFiction,
+  AddANewOriginalCharacter,
 }

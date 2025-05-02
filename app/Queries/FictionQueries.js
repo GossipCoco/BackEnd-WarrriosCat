@@ -184,7 +184,7 @@ const GetAllFictionsByName = (name, nav) => {
             model: model.GameGamer,
             include: [{
               model: model.Gamer,
-              attributes: ['CurrentName'],
+              attributes: ['CurrentName', 'Image'],
             }]
           }
         ],

@@ -70,9 +70,10 @@ const countAllCharacters = () => {
       where: { UserId: usr },
       attributes: ['Id', 'CurrentName'],
       order: [["CurrentName", "ASC"]]
-    })
+    }) 
   }
   const GetAllCharactersByUser = (user) => {
+    console.log("GetAllCharactersByUser",user)
     return model.Character.findAll({
       order: [["UserName", "ASC"]],
       include: [        

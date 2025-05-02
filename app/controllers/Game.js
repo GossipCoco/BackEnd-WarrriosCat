@@ -43,4 +43,7 @@ Game.GetAllGamesByCharacter = (req, res) => {
 Game.AddANewCharacterToGameAndFiction = (req, res) => {
   handleResponse(res, query.AddANewCharacterToGameAndFiction(req.params.id, req.body))  
 }
+Game.AddANewOriginalCharacter = (req, res) => {
+  handleResponse(res, query.AddANewOriginalCharacter(req.params.id, req.body))
+}
 module.exports = Game

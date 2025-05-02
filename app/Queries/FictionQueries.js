@@ -142,7 +142,7 @@ const GetAllFictionsByName = (name, nav) => {
       Title: { [model.Utils.Op.like]: `%${name}%` },
     },
     include: [
-      { model: model.Comments},
+      // { model: model.Comments},
       { model: model.FictionKind,
         attributes: ['KindId']
        },
@@ -150,14 +150,16 @@ const GetAllFictionsByName = (name, nav) => {
         model: model.User,
         attributes: ['Id', 'UserName']
       },
-      { model: model.FictionIllustration },
+      { model: model.FictionIllustration,  attributes: ['IllustrationId'] },
       {
         model: model.Chapter,
         separate: true, // important pour permettre le tri
-        order: [['NumberChapter', 'ASC']]
+        order: [['NumberChapter', 'ASC']],
+        attributes: ['Id', 'Title']
       },     
       {
         model: model.Game,
+        attributes: ['Id'],
         include: [          
           {
             model: model.GameCharacter,
@@ -167,10 +169,12 @@ const GetAllFictionsByName = (name, nav) => {
                 model: model.Character,
                 attributes: ['Id', 'CurrentName', 'Image'],
                 include: [
-                  { model: model.Grade },
                   {
                     model: model.Warrior,
-                    include: [{ model: model.Clan }],
+                    attributes: ['Name'],
+                    include: [{ model: model.Clan,
+                      attributes: ['Id','Name'],
+                    }],
                   },
                 ],
               },
@@ -179,7 +183,8 @@ const GetAllFictionsByName = (name, nav) => {
           {
             model: model.GameGamer,
             include: [{
-              model: model.Gamer
+              model: model.Gamer,
+              attributes: ['CurrentName'],
             }]
           }
         ],

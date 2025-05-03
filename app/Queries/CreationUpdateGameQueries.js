@@ -39,6 +39,7 @@ const CreateANewGame = async (UserId, data, imagePath) => {
         UserId: UserId
       };
       await model.UserGame.create(requestUserGame);
+      
       const requestFictionKind = {
         Id:uuidv4(),
         FictionId: FictionId,

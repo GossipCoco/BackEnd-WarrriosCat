@@ -66,9 +66,11 @@ const GetAllClans = (nav) => {
       ],
     });
   };
-  const GetAllLocations = () => {
-    console.log("**** GetAllLocations ****");
-    return model.Location.findAll({
+  const GetAllLocations = (nav) => {
+    console.log("**** GetAllLocations ****", nav);
+    return model.Location.findAll({      
+      offset: nav.step * nav.current,
+      limit: nav.step,
       order: [OrderName]
     })
   }

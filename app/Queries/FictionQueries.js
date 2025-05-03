@@ -142,7 +142,6 @@ const GetAllFictionsByName = (name, nav) => {
       Title: { [model.Utils.Op.like]: `%${name}%` },
     },
     include: [
-      // { model: model.Comments},
       { model: model.FictionKind,
         attributes: ['KindId']
        },
@@ -155,7 +154,7 @@ const GetAllFictionsByName = (name, nav) => {
         model: model.Chapter,
         separate: true, // important pour permettre le tri
         order: [['NumberChapter', 'ASC']],
-        attributes: ['Id', 'Title']
+        attributes: ['Id', 'Title', 'NbWords']
       },     
       {
         model: model.Game,

@@ -10,6 +10,7 @@ router
 .get('/GetFiveLastChapByUser/:id', Chapter.GetFiveLastChapByUser)
 .get('/GetAChapterById/:id', Chapter.GetAChapterById)
 .get('/GetAChapterByName/:id', Chapter.GetAChapterByName)
+.get('/GetAllChaptersByFiction/:id', Chapter.GetAllChaptersByFiction)
 .post('/GetLastChapterOfAFiction/:id', Chapter.GetLastChapterOfAFiction)
 .post('/CreateAChapitre/:id', upload.single('image'), Chapter.CreateANewChapter)
 .post('/EditChapter/:id', Chapter.EditChapter)

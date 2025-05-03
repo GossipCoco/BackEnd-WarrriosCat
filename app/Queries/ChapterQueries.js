@@ -65,6 +65,16 @@ const GetAChapterByName = (title) => {
       include: [ClanLocation]
     })
   }
+  const GetAllChaptersByFiction = (FictionId) => {
+    console.log("**** GetAllChaptersByFiction ****", FictionId);
+    return model.Chapter.findAll({
+      where: {
+        FictionId: FictionId
+      },
+      attributes:['Id', 'Title', 'NumberChapter'],
+      order: [['NumberChapter', 'ASC']],
+    })
+  }
   const GetFiveLastChapByUser = (usr) => {
     console.log("**** GetFiveLastChapByUser ****", usr);
     return model.Chapter.findAll({
@@ -132,6 +142,7 @@ const CreateANewChapter = (FictionId, data, imagePath) => {
     GetAChapterByName,
     GetLastChapterOfAFiction,
     GetFiveLastChapByUser,
+    GetAllChaptersByFiction,
     CreateANewChapter,
     EditChapter
   }

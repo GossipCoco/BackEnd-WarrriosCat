@@ -23,4 +23,7 @@ Chapter.CreateANewChapter = async (req, res) => {
 Chapter.EditChapter = async (req, res) => {
   handleResponse(res, query.EditChapter(req.params.id, req.body))
 }
+Chapter.GetAllChaptersByFiction = async (req, res) => {
+  handleResponse(res, query.GetAllChaptersByFiction(req.params.id))
+}
 module.exports = Chapter

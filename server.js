@@ -29,6 +29,7 @@ const Rating = require('./app/Routes/Rating')
 const Chapter = require('./app/Routes/Chapter')
 const Message = require('./app/Routes/Message')
 const Kind = require('./app/Routes/Kind')
+
 const corsOptions = {
     // origin: '*',
     origin: [

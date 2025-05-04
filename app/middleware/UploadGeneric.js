@@ -14,8 +14,12 @@ const createUploadMiddleware = (uploadDir) => {
       if (!fs.existsSync(destinationPath)) {
         fs.mkdirSync(destinationPath, { recursive: true });
       }
+      if (!file.originalname.match(/\.(jpg|jpeg|png)$/)) {
+        return cb(new Error('Le fichier doit être un JPG, JPEG ou PNG.'));
+      }
       cb(null, destinationPath);
     },
+
     filename: (req, file, cb) => {
       cb(null, file.originalname);
     },

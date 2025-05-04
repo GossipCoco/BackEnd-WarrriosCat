@@ -6,9 +6,9 @@ const fs = require("fs");
 const upload  = require("../middleware/UploadGeneric")("/images/avatars/");
 const Image = {};
 
-Image.GetAll = (req, res) => {
+Image.GetAllImagesTable = (req, res) => {
   const modelName = req.params.model;  // Le nom du modèle est passé en tant que paramètre de la requête
-  handleResponse(res, query.getAll(modelName))
+  handleResponse(res, query.GetAllImagesTable(modelName))
 };
 Image.GetAllIllustrations = (req, res) => {
   handleResponse(res, query.GetAllIllustrations())

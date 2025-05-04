@@ -4,7 +4,7 @@ const upload = require('../middleware/UploadGeneric')('/images/avatars/');
 const router = express.Router();
 
 router
-  .get('/:model', Image.GetAll)
+  .get('/', Image.GetAllImagesTable)
   .put("/upload/:id", Image.Upload)
   .post('/UploadAvatar/:id', upload.single('image'), Image.UploadAvatar);
   // .put("/uploadAvatar/:id", Image.UploadAvatar)

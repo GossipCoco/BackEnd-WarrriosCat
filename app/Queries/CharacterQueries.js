@@ -12,6 +12,20 @@ const countAllCharacters = () => {
     promises.push(request)
     return functions.countFuntion(request)
   };
+
+  const CountCharacterByNameSearch = (id) => {
+    console.log("**** CountCharacterByNameSearch ****", id);
+    const request = model.Character.findAndCountAll({
+      where: {
+        Id: { [model.Utils.Op.like]: `%${id}%` },
+        CurrentName: { [model.Utils.Op.like]: `%${id}%` }
+      },
+      attributes: ['Id']
+    });
+    const promises = []
+    promises.push(request)
+    return functions.countFuntion(request)
+  }
   const CountNbOriginaleCharacterByUser = (usr) => {  
     console.log("**** countAllCharacters   *****************", usr);
     const request = model.Gamer.findAndCountAll({
@@ -158,26 +172,23 @@ const countAllCharacters = () => {
  * @param {STRING} name 
  * @returns {Object}
  */
-const GetCharacterByNameSearch = (name) => {
-  console.log("**** GetCharacterByNameSearch ****", name);
+const GetCharacterByNameSearch = (name, nav) => {
+  console.log("**** GetCharacterByNameSearch ****", name, nav);
   return model.Character.findAll({
+    offset: nav.step * nav.current,
+    limit: nav.step,
     where: {
       Id: { [model.Utils.Op.like]: `%${name}%` },
       CurrentName: { [model.Utils.Op.like]: `%${name}%` }
     },
-    include: [      
-      { model: model.Chronology},
-      { model: model.RelationCharacters },
-      { model: model.Grade },      {
-        model: model.Clan,
-        include: [{ model: model.Location }],
-      },
+    include: [
+      {model: model.Clan,},
+      { model: model.Grade },
       {
         model: model.Warrior,
         include: [
           {
-            model: model.Clan,
-            include: [{ model: model.Location }],
+            model: model.Clan,            
           },
         ],
       },
@@ -338,6 +349,7 @@ const ReturnPromise = (promise, request) => {
 }
   module.exports = {
     countAllCharacters,
+    CountCharacterByNameSearch,
     CountNbOriginaleCharacterByUser,
     GetAllCharacters,
     GetAllCharactersDashboard,

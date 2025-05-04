@@ -4,6 +4,9 @@ const Character = {}
 Character.countAllCharacters = (req, res) => {
     handleResponse(res, query.countAllCharacters())
 }
+Character.CountCharacterByNameSearch = (req, res) => {
+    handleResponse(res, query.CountCharacterByNameSearch(req.params.id))
+}
 Character.CountNbOriginaleCharacterByUser = (req, res) => {
     handleResponse(res, query.CountNbOriginaleCharacterByUser(req.params.id))
 }
@@ -19,7 +22,7 @@ Character.GetCharacterByName = (req, res) => {
 }
 Character.GetCharacterByNameSearch = (req, res) => {
     const id = req.params.name
-    handleResponse(res, query.GetCharacterByNameSearch(id))
+    handleResponse(res, query.GetCharacterByNameSearch(id, req.body))
 }
 Character.GetOriginaleCharacterByUser = (req, res) => {
     const id = req.params.id

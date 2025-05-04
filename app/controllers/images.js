@@ -1,9 +1,7 @@
 const query = require("../Queries/ImageQueries");
 const { handleResponse } = require("../Functions/handleResponse");  // Importer la fonction
 const uploadFile = require("../middleware/upload");
-const uploadFileAvatar = require("../middleware/uploadAvatar");
-const fs = require("fs");
-const upload  = require("../middleware/UploadGeneric")("/images/avatars/");
+
 const Image = {};
 
 Image.GetAllImagesTable = (req, res) => {
@@ -50,9 +48,7 @@ Image.UploadAvatar = async (req, res) => {
   try {
     const userId = req.params.id;
     const imageName = req.file.originalname;
-
     const result = await query.UploadUserAvatar(imageName, userId);
-
     res.status(200).json({
       success: true,
       message: "Avatar uploadé et lié à l'utilisateur",

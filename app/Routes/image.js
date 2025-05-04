@@ -6,6 +6,5 @@ const router = express.Router();
 router
   .get('/', Image.GetAllImagesTable)
   .put("/upload/:id", Image.Upload)
-  .post('/UploadAvatar/:id', upload.single('image'), Image.UploadAvatar);
-  // .put("/uploadAvatar/:id", Image.UploadAvatar)
+  .post('/UploadAvatar/:id', upload.single('image'), Image.UploadAvatar)
 module.exports = router;

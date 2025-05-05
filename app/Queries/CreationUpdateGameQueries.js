@@ -2,6 +2,7 @@ const { v4: uuidv4 } = require('uuid');
 const model = require('../Models');
 require('../Models/associations');
 
+/* TO DO refracto de la query */
 
 const CreateANewGame = async (UserId, data, imagePath) => {
     console.log("**** CreateANewGame ****", UserId, data, imagePath);

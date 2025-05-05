@@ -11,7 +11,9 @@ Image.GetAllImagesTable = (req, res) => {
 Image.GetAllIllustrations = (req, res) => {
   handleResponse(res, query.GetAllIllustrations())
 }
-
+Image.GetAllBackground = (req, res) =>{
+  handleResponse(res, query.GetAllBackground())
+}
 Image.Upload = async (req, res) => {
   const id = req.params.id;
   console.log("id: ", id);

@@ -6,6 +6,7 @@ const router = express.Router();
 router
   .get('/', Image.GetAllImagesTable)
   .get('/GetAllIllustrations', Image.GetAllIllustrations)
+  .get('/GetAllBackground', Image.GetAllBackground)
   .put("/upload/:id", Image.Upload)
   .post('/UploadAvatar/:id', upload.single('image'), Image.UploadAvatar)
 module.exports = router;

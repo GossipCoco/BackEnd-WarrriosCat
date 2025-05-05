@@ -21,10 +21,6 @@ const GetAllImagesTable = () => {
   };
   const GetAllIllustrations = () => {
     console.log("********** GetAllIllustration **********");
-    // const promise = [];
-    // const request = model.Illustration.findAll({
-    //   attributes:['Id']
-    // })
     return model.Illustration.findAll({
       attributes:['Id']
     })
@@ -52,10 +48,19 @@ const GetAllImagesTable = () => {
     }
     return newModel.findAll({});
   };
+  const GetAllBackground = () => {
+    console.log("********** GetAllBackground **********")
+    return model.Parallax.findAll({
+      attributes:['Image'],
+      where: { Position : '0' }
+    })
+
+  }
   const queries = {
     GetAllImagesTable,
     GetAllIllustrations,
     UploadUserAvatar,
-    getAll
+    getAll,
+    GetAllBackground
   }
   module.exports = queries;

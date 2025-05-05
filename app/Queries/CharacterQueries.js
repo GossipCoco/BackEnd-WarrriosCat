@@ -5,28 +5,25 @@ const functions = require('../Functions/countFunctions')
 
 const countAllCharacters = () => {
     console.log("**** countAllCharacters   *****************");
-    const request = model.Character.findAndCountAll({
-      attributes: ['Id']
-    });
+    const request = model.Character.findAndCountAll({ attributes: ['Id'] });
     const promises = []
     promises.push(request)
     return functions.countFuntion(request)
   };
-
-  const CountCharacterByNameSearch = (id) => {
-    console.log("**** CountCharacterByNameSearch ****", id);
-    const request = model.Character.findAndCountAll({
-      where: {
-        Id: { [model.Utils.Op.like]: `%${id}%` },
-        CurrentName: { [model.Utils.Op.like]: `%${id}%` }
-      },
-      attributes: ['Id']
-    });
-    const promises = []
-    promises.push(request)
-    return functions.countFuntion(request)
-  }
-  const CountNbOriginaleCharacterByUser = (usr) => {  
+const CountCharacterByNameSearch = (id) => {
+  console.log("**** CountCharacterByNameSearch ****", id);
+  const request = model.Character.findAndCountAll({
+    where: {
+      Id: { [model.Utils.Op.like]: `%${id}%` },
+      CurrentName: { [model.Utils.Op.like]: `%${id}%` }
+    },
+    attributes: ['Id']
+  });
+  const promises = []
+  promises.push(request)
+  return functions.countFuntion(request)
+}
+const CountNbOriginaleCharacterByUser = (usr) => {  
     console.log("**** countAllCharacters   *****************", usr);
     const request = model.Gamer.findAndCountAll({
       where: { UserId: usr },
@@ -35,28 +32,22 @@ const countAllCharacters = () => {
     const promises = []
     promises.push(request)    
     return functions.countFuntion(request)  
-  }
-  const GetAllCharacters = (nav) => {
+}
+const GetAllCharacters = (nav) => {
     console.log("************ GetAllCharacters ************", nav)
     return model.Character.findAll({
       offset: nav.step * nav.current,
       limit: nav.step,
       order: [["CurrentName", "ASC"]],
       include: [
-        { model: model.Grade },
-        {
-          model: model.Clan,
-          include: [{ model: model.Location }],
+        { model: model.Grade,
+          attributes:['Name'] },
+        { model: model.Clan,
+          attributes:['Id', 'Name', 'Image']
         },
         {
-          model: model.Warrior,  
-          include: [
-            {
-              model: model.Clan,
-              include: [{ model: model.Location }],
-             
-            },
-          ],
+          model: model.Warrior,
+          attributes:['Name']          
         },
       ],
     });

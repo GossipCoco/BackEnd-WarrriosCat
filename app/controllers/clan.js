@@ -26,4 +26,7 @@ Clan.GetLocationById = (req, res) => {
   const id = req.params.id
   handleResponse(res, query.GetLocationById(id)) 
 }
+Clan.GetAllClanForSelect = (req, res) => {
+  handleResponse(res, query.GetAllClanForSelect())
+}
 module.exports = Clan

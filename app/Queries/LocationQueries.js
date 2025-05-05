@@ -28,6 +28,12 @@ const GetAllClans = (nav) => {
       order: [OrderName]
     });
   };
+  const GetAllClanForSelect =  () => {
+    console.log("**** GetAllClanForSelect ****")
+    return model.Clan.findAll({      
+      order: [OrderName]
+    });
+  }
   const GetClanById = (id) => {
     console.log("**** GetClanById ****", id)
     return model.Clan.findOne({
@@ -91,5 +97,6 @@ module.exports = {
     GetClanById,
     GetClanByNameClan,
     GetAllLocations,
-    GetLocationById
+    GetLocationById,
+    GetAllClanForSelect
 }

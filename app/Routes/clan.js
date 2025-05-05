@@ -9,6 +9,7 @@ router
 .get('/countAllLocations', Clan.countAllLocations)
 .post('/GetAllLocations', Clan.GetAllLocations)
 .post('/', Clan.GetAllClans)
+.get('/GetAllClanForSelect', Clan.GetAllClanForSelect)
 .get('/:id', Clan.GetClanById)
 .get('/search/:name', Clan.GetClanById)
 .post('/Location/GetAllLocations', Clan.GetAllLocations)

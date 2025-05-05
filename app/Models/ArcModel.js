@@ -26,6 +26,9 @@ const Arc = connection.define(
       type: DataTypes.TEXT,
       allowNull: true,
     },
+    MajorEvents:{
+      type: DataTypes.TEXT,
+    },
     Image: {
       type: DataTypes.STRING,
       allowNull: true,
@@ -56,6 +59,9 @@ const Arc = connection.define(
       allowNull: true,
     },
     ArcNumber: {
+      type: DataTypes.INTEGER
+    },
+    BookCount: {
       type: DataTypes.INTEGER
     }
   },

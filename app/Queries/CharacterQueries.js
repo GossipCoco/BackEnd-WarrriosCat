@@ -39,6 +39,7 @@ const GetAllCharacters = (nav) => {
       offset: nav.step * nav.current,
       limit: nav.step,
       order: [["CurrentName", "ASC"]],
+      attributes:['Id', 'CurrentName', 'Image'],
       include: [
         { model: model.Grade,
           attributes:['Name'] },

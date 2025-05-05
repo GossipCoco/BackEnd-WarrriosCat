@@ -18,4 +18,7 @@ ArcBook.GetCurrentArc = (req, res) => {
     console.log("********* GetCurrentArc ******************")
     handleResponse(res, query.GetCurrentArc())
 }
+ArcBook.GetArcByName = (req, res) => {
+    handleResponse(res, query.GetArcByName(req.params.id))
+}
 module.exports = ArcBook

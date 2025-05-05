@@ -57,10 +57,17 @@ const GetCurrentArc = () => {
         attributes: ['Id','Title', 'Summary','Image' ],
      })
 }
+const GetArcByName = (id => {
+    console.log("************ GetArcByName ************", id)
+    return model.Arc.findOne({
+        where: { Id: id}
+    })
+})
 module.exports = {
     GetAllArcsWithBooks,
     GetAllBooks,
     GetBookByTitle,
     GetLastPublishedBook,
-    GetCurrentArc
+    GetCurrentArc,
+    GetArcByName
 }

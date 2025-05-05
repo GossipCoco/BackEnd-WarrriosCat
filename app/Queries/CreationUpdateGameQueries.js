@@ -90,7 +90,7 @@ const CreateANewGame = async (UserId, data, imagePath) => {
       };
       await model.GameCharacter.create(RequestCharacterSecond);
     }
-    if(data.OriginalFirstCharacterId){
+    if(data.OriginalFirstCharacterId !== 'null'){
       const RequestOriginalCharacterFirst = {
         Id: uuidv4(),
         GameId: gameId,
@@ -98,7 +98,7 @@ const CreateANewGame = async (UserId, data, imagePath) => {
       };
       await model.GameGamer.create(RequestOriginalCharacterFirst);
     }
-    if(data.OriginalSecondCharacterId){
+    if(data.OriginalSecondCharacterId !== 'null'){
       // Associe le second personnage au jeu
       const RequestOriginalCharacterSecond = {
         Id: uuidv4(),

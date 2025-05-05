@@ -19,9 +19,19 @@ const GetAllImagesTable = () => {
         console.log("ERROR: ", err);
       });
   };
+  const GetAllIllustrations = () => {
+    console.log("********** GetAllIllustration **********");
+    // const promise = [];
+    // const request = model.Illustration.findAll({
+    //   attributes:['Id']
+    // })
+    return model.Illustration.findAll({
+      attributes:['Id']
+    })
 
+  }
   const UploadUserAvatar = (data, id) => {
-    console.log("UploadUserAvatar", data, id);
+    console.log("********** UploadUserAvatar **********", data, id);
     const promises = [];
     const newRequest = model.User.update({ Avatar: data }, { where: { Id: id } });
     promises.push(newRequest);
@@ -44,6 +54,7 @@ const GetAllImagesTable = () => {
   };
   const queries = {
     GetAllImagesTable,
+    GetAllIllustrations,
     UploadUserAvatar,
     getAll
   }

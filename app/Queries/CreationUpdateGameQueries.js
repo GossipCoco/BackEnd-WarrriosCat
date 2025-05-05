@@ -94,7 +94,7 @@ const CreateANewGame = async (UserId, data, imagePath) => {
       const RequestOriginalCharacterFirst = {
         Id: uuidv4(),
         GameId: gameId,
-        CharacterId: data.OriginalFirstCharacterId
+        GamerId: data.OriginalFirstCharacterId
       };
       await model.GameGamer.create(RequestOriginalCharacterFirst);
     }
@@ -103,7 +103,7 @@ const CreateANewGame = async (UserId, data, imagePath) => {
       const RequestOriginalCharacterSecond = {
         Id: uuidv4(),
         GameId: gameId,
-        CharacterId: data.OriginalSecondCharacterId
+        GamerId: data.OriginalSecondCharacterId
       };
       await model.GameCharacter.create(RequestOriginalCharacterSecond);
     }

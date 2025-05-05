@@ -57,12 +57,19 @@ const GetCurrentArc = () => {
         attributes: ['Id','Title', 'Summary','Image' ],
      })
 }
-const GetArcByName = (id => {
+const GetArcByName = (id) => {
     console.log("************ GetArcByName ************", id)
     return model.Arc.findOne({
-        where: { Id: id}
+        where: { Id: id},
+        include:[
+            {model: model.Book,
+                include:[{
+                    model: model.BookCharacter,
+                    include: [{ model: model.Character }]
+                }]
+            }]
     })
-})
+}
 module.exports = {
     GetAllArcsWithBooks,
     GetAllBooks,

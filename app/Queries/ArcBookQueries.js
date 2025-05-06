@@ -7,7 +7,8 @@ const GetAllArcsWithBooks = (nav) => {
     return model.Arc.findAll({
         order: [["ArcNumber", "ASC"]],
         include:[{
-            model: model.Book
+            model: model.Book,
+            order: [["NumberBook", "ASC"]],
         }]
     })
 }
@@ -16,6 +17,7 @@ const GetAllBooks = (nav) =>{
     return model.Book.findAll({
         offset: nav.step * nav.current,
         limit: nav.step,
+        order: [["NumberBook", "ASC"]],
         include:[{
             model: model.Arc
         }]

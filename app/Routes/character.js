@@ -11,6 +11,7 @@ router
 .get('/GetOneOriginaleCharacterByName/:id', Character.GetOneOriginaleCharacterByName)
 .get('/countAllcharacters', Character.countAllCharacters)
 .get('/CountNbOriginaleCharacterByUser/:id', Character.CountNbOriginaleCharacterByUser)
+.get('/CountNbCharactersByClan/:id', Character.CountNbCharactersByClan)
 .get('/CountCharacterByNameSearch/:id', Character.CountCharacterByNameSearch)
 .get('/GetAllNamesAndIdsCharacters', Character.GetAllNamesAndIdsCharacters)
 .get('/GetAllNamesOfAllCharacters', Character.GetAllNamesOfAllCharacters)

@@ -10,6 +10,9 @@ Character.CountCharacterByNameSearch = (req, res) => {
 Character.CountNbOriginaleCharacterByUser = (req, res) => {
     handleResponse(res, query.CountNbOriginaleCharacterByUser(req.params.id))
 }
+Character.CountNbCharactersByClan = (req, res) => {
+    handleResponse(res, query.CountNbCharactersByClan(req.params.id))
+}
 Character.GetAllCharacters = (req, res) => {
     handleResponse(res, query.GetAllCharacters(req.body.nav))
 }

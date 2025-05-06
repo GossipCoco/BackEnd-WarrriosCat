@@ -61,6 +61,9 @@ const Book = connection.define(
       type: 'DATETIME',
       defaultValue: new Date(functions.toDateTime(Date.now())).toISOString()
     },
+    NumberBook:{
+      type: DataTypes.INTEGER
+    },
 
   },
   {

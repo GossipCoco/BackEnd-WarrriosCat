@@ -33,7 +33,6 @@ const Arc = connection.define(
       type: DataTypes.STRING,
       allowNull: true,
     },
-    
     IllustrationOne: {
       type: DataTypes.STRING(255),
       allowNull: true,

@@ -2,6 +2,16 @@ const { v4: uuidv4 } = require('uuid');
 const model = require('../Models');
 require('../Models/associations');
 
+const CountUnreadMessages = (receiverId) => {
+    console.log("**** CountUnreadMessages ****", receiverId);
+    return model.Message.count({
+      where: {
+        ReceiverId: receiverId,
+        Status: 'unread' // Assure-toi que "unread" est bien la valeur utilisée
+      }
+    });
+  };
+
 const GetMessageByReceiverId = (id, nav) => {
     console.log("****GetMessageByReceiverId ****", id, nav)
     return model.Message.findAll({
@@ -28,7 +38,8 @@ const ChangeStatusMessage = (id, status) => {
     })
     .catch(err => { console.log("ERROR UpdateLastDateConnection : ", err) })
 }
-module.exports = {    
+module.exports = {
+    CountUnreadMessages,
     GetMessageByReceiverId,
     ChangeStatusMessage
 }

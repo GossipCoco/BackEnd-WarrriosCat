@@ -78,16 +78,20 @@ const GetUserById = (id) => {
     console.log("**** Dashboard ID User ****", id);
     return model.User.findOne({
         where: { Id: id },
+        attributes:['Avatar', 'UserName', 'LastConnexion', 'Inscription'],
         include: [
             { model: model.Gamer, 
                 limit: 6,
                 attributes: ['Id', 'CurrentName', 'Image'],
             }, 
-            { model: model.Message,  where : { Status: 'unread'} },
-            { model: model.Points },
-            { model: model.Notification },
-            { model: model.Role },
-            { model: model.Level }
+            { model: model.Points,
+                attributes: ['Points'] },
+            { model: model.Role,
+                attributes: ['Name', 'Image']
+             },
+            { model: model.Level,
+                attributes: ['Name', 'Image']
+            }
         ],
     });
 };

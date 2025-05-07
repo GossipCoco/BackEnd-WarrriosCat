@@ -2,6 +2,9 @@ const query = require('../Queries/MessageQueries')
 const { handleResponse } = require("../Functions/handleResponse"); 
 
 const Message = {}
+Message.CountUnreadMessages = (req, res) => {
+    handleResponse(res, query.CountUnreadMessages(req.params.id))
+}
 Message.GetMessageByReceiverId = (req, res) => {
     handleResponse(res, query.GetMessageByReceiverId(req.params.id, req.body))
 }

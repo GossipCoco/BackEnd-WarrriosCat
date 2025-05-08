@@ -45,10 +45,11 @@ const GetLastPublishedBook = () => {
     return model.Book.findOne({
         limit: 1,
         order: [['PublishDate', 'DESC']],
+        attributes:['Id', 'Title', 'Summary', 'Image']
         
-        include:[{
-            model: model.Arc
-        }]
+        // include:[{
+        //     model: model.Arc
+        // }]
     })
 }
 const GetCurrentArc = () => {

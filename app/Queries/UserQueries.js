@@ -137,7 +137,6 @@ const UpdateUserInformations = (usr, data) => {
     console.log("****UpdateLastDateConnection ID User ****", usr, data)
 
 }
-
 module.exports = {
     GetAllUsers,
     GetUserByUsername,

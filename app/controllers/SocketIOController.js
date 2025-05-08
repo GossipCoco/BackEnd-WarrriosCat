@@ -10,7 +10,11 @@ const SocketIOController = (server, options) => {
         
         // Envoie du message de bienvenue
         socket.emit('sendMessage', { userName: usr, message:message });
-        
+        socket.on("newMessage", (msg) => {
+            console.log("Message reçu du client:", msg);
+            // Diffuser à tous sauf l’expéditeur
+            socket.broadcast.emit("receiveMessage", msg);
+        });
         // Lors de la déconnexion
         socket.on('disconnect', () => {
             console.log(`${usr} s'est déconnecté`);

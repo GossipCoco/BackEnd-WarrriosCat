@@ -42,6 +42,15 @@ const CountNbCharactersByClan = (id) => {
   promises.push(request)
   return functions.countFuntion(request)
 }
+const CountCharacterByGrade = id => {
+  console.log("**** CountNbCharactersByClan   *****************", id);
+  const request = model.Character.findAndCountAll({
+    where : { GradeId : id}
+  })
+  const promises = []
+  promises.push(request)
+  return functions.countFuntion(request)
+}
 const GetAllCharacters = (nav) => {
     console.log("************ GetAllCharacters ************", nav)
     return model.Character.findAll({
@@ -366,6 +375,7 @@ const ReturnPromise = (promise, request) => {
     CountCharacterByNameSearch,
     CountNbOriginaleCharacterByUser,
     CountNbCharactersByClan,
+    CountCharacterByGrade,
     GetAllCharacters,
     GetAllCharactersByClan,
     GetAllCharactersDashboard,

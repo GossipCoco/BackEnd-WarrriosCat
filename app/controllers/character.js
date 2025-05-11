@@ -13,11 +13,14 @@ Character.CountNbOriginaleCharacterByUser = (req, res) => {
 Character.CountNbCharactersByClan = (req, res) => {
     handleResponse(res, query.CountNbCharactersByClan(req.params.id))
 }
+Character.CountCharacterByGrade = (req, res) => {
+    handleResponse(res, query.CountCharacterByGrade(req.params.id))
+}
+/* GET */
 Character.GetAllCharacters = (req, res) => {
     handleResponse(res, query.GetAllCharacters(req.body.nav))
 }
 Character.GetAllCharactersByClan = (req, res) => {
-    console.log(req.body)
     handleResponse(res, query.GetAllCharactersByClan(req.params.id, req.body))
 }
 Character.GetAllCharactersDashboard = (req, res) => {

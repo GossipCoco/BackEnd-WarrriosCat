@@ -16,6 +16,7 @@ router
 .get('/GetAllNamesAndIdsCharacters', Character.GetAllNamesAndIdsCharacters)
 .get('/GetAllNamesOfAllCharacters', Character.GetAllNamesOfAllCharacters)
 .get('/GetAllCharactersByUser/:id', Character.GetAllCharactersByUser)
+.post('/GetAllCharactersByClan/:id', Character.GetAllCharactersByClan)
 .post('/search/:name', Character.GetCharacterByNameSearch)
 .get('/GetAllNamesAndIdsOriginaCharacters/:id', Character.GetAllNamesAndIdsOriginaCharacters)
 .post('/GetOriginaleCharacterByUser/:id', Character.GetOriginaleCharacterByUser)

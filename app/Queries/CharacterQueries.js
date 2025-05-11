@@ -62,7 +62,16 @@ const GetAllCharacters = (nav) => {
       ],
     });
   };
-  
+  const GetAllCharactersByClan = (id, nav) => {
+    console.log("************ GetAllCharactersByClan ************", nav.step)
+    return model.Character.findAll({
+      offset: nav.step * nav.current,
+      limit: nav.step,
+      order: [["CurrentName", "ASC"]],
+      attributes: ['Id', 'CurrentName', 'Image'],
+      where : { ClanId : id}
+    })
+  }
   const GetAllCharactersDashboard = (nav) => {
     console.log("GetAllCharactersDashboard", nav.step)
     return model.Character.findAll({
@@ -354,6 +363,7 @@ const ReturnPromise = (promise, request) => {
     CountNbOriginaleCharacterByUser,
     CountNbCharactersByClan,
     GetAllCharacters,
+    GetAllCharactersByClan,
     GetAllCharactersDashboard,
     GetAllNamesAndIdsCharacters,
     GetAllNamesAndIdsOriginaCharacters,

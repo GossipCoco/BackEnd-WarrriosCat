@@ -16,6 +16,9 @@ Character.CountNbCharactersByClan = (req, res) => {
 Character.GetAllCharacters = (req, res) => {
     handleResponse(res, query.GetAllCharacters(req.body.nav))
 }
+Character.GetAllCharactersByClan = (req, res) => {
+    handleResponse(res, query.GetAllCharactersByClan(req.params.id, req.body.nav))
+}
 Character.GetAllCharactersDashboard = (req, res) => {
     handleResponse(res, query.GetAllCharactersDashboard(req.body.nav))
 }

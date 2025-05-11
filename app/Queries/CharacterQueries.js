@@ -63,13 +63,17 @@ const GetAllCharacters = (nav) => {
     });
   };
   const GetAllCharactersByClan = (id, nav) => {
-    console.log("************ GetAllCharactersByClan ************", nav.step)
+    console.log("************ GetAllCharactersByClan ************", id, nav)
     return model.Character.findAll({
       offset: nav.step * nav.current,
       limit: nav.step,
       order: [["CurrentName", "ASC"]],
       attributes: ['Id', 'CurrentName', 'Image'],
-      where : { ClanId : id}
+      where : { ClanId : id},
+      include: [{
+        model: model.Clan,
+        attributes:['Name', 'Image']
+      }]
     })
   }
   const GetAllCharactersDashboard = (nav) => {

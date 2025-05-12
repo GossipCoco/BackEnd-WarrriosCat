@@ -2,6 +2,8 @@ const { v4: uuidv4 } = require('uuid');
 const model = require('../Models');
 require('../Models/associations');
 const functions = require('../Functions/countFunctions')
+const { Op } = require("sequelize");
+
 
 const countAllCharacters = () => {
     console.log("**** countAllCharacters   *****************");
@@ -24,7 +26,7 @@ const CountCharacterByNameSearch = (id) => {
   return functions.countFuntion(request)
 }
 const CountNbOriginaleCharacterByUser = (usr) => {  
-    console.log("**** countAllCharacters   *****************", usr);
+    console.log("**** CountNbOriginaleCharacterByUser   *****************", usr);
     const request = model.Gamer.findAndCountAll({
       where: { UserId: usr },
       attributes: ['Id']
@@ -33,10 +35,12 @@ const CountNbOriginaleCharacterByUser = (usr) => {
     promises.push(request)    
     return functions.countFuntion(request)  
 }
-const CountNbOriginaleCharacterByName = (id) =>{  
-    console.log("********** CountNbOriginaleCharacterByName   *****************", usr);
+const CountNbOriginaleCharacterByName = (id) =>{
+    console.log("********** CountNbOriginaleCharacterByName *****************", id);
     const request = model.Gamer.findAndCountAll({
-      where: { CurrentName: `%${id}%` },
+      where: { CurrentName: {
+        [Op.like]: `%${id}%`  // <-- la vraie recherche partielle
+      } },
       attributes: ['Id']
     });
     const promises = []
@@ -53,7 +57,7 @@ const CountNbCharactersByClan = (id) => {
   return functions.countFuntion(request)
 }
 const CountCharacterByGrade = id => {
-  console.log("**** CountNbCharactersByClan   *****************", id);
+  console.log("**** CountNbCharactersByGrade   *****************", id);
   const request = model.Character.findAndCountAll({
     where : { GradeId : id}
   })
@@ -282,7 +286,9 @@ const GetOriginaleCharacterByUser = (usr, nav) => {
 const GetOriginalCharacterByName = (id, nav) => {
   console.log("GetOriginalCharacterByName", id, nav);
   return model.Gamer.findAll({
-    where: { CurrentName: `%${name}%` }, 
+     where: { CurrentName: {
+        [Op.like]: `%${id}%`  // <-- la vraie recherche partielle
+      } },
     offset: nav.step * nav.current,
     limit: nav.step,
     order: [["CurrentName", "ASC"]],

@@ -85,6 +85,20 @@ const GetAllCharacters = (nav) => {
       }]
     })
   }
+  const GetAllCharactersByGrade = (id, nav) => {
+    console.log("************ GetAllCharactersByGrade ************", id, nav)
+    return model.Character.findAll({
+      offset: nav.step * nav.current,
+      limit: nav.step,
+      order: [["CurrentName", "ASC"]],
+      attributes: ['Id', 'CurrentName', 'Image'],
+      where : { GradeId : id},
+      include: [{
+        model: model.Clan,
+        attributes:['Name', 'Image']
+      }]
+    })
+  }
   const GetAllCharactersDashboard = (nav) => {
     console.log("GetAllCharactersDashboard", nav.step)
     return model.Character.findAll({
@@ -378,6 +392,7 @@ const ReturnPromise = (promise, request) => {
     CountCharacterByGrade,
     GetAllCharacters,
     GetAllCharactersByClan,
+    GetAllCharactersByGrade,
     GetAllCharactersDashboard,
     GetAllNamesAndIdsCharacters,
     GetAllNamesAndIdsOriginaCharacters,

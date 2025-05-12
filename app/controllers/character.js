@@ -23,6 +23,9 @@ Character.GetAllCharacters = (req, res) => {
 Character.GetAllCharactersByClan = (req, res) => {
     handleResponse(res, query.GetAllCharactersByClan(req.params.id, req.body))
 }
+Character.GetAllCharactersByGrade = (req, res) => {
+    handleResponse(res, query.GetAllCharactersByGrade(req.params.id, req.body))
+}
 Character.GetAllCharactersDashboard = (req, res) => {
     handleResponse(res, query.GetAllCharactersDashboard(req.body.nav))
 }

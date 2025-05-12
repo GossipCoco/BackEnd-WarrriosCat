@@ -35,22 +35,18 @@ const CountNbOriginaleCharacterByUser = (usr) => {
     promises.push(request)    
     return functions.countFuntion(request)  
 }
-const CountNbOriginaleCharacterByName = (id) => {
-  console.log("********** CountNbOriginaleCharacterByName *****************", id);
-
-  return model.Gamer.findAndCountAll({
-    where: {
-      CurrentName: {
-        [Op.like]: `%${id}%`
-      }
-    }
-  }).then(result => {
-    return { ob: { count: result.count } };
-  }).catch(err => {
-    console.error(err);
-    return { ob: { count: 0 }, error: true };
-  });
-};
+const CountNbOriginaleCharacterByName = (id) =>{
+    console.log("********** CountNbOriginaleCharacterByName *****************", id);
+    const request = model.Gamer.findAndCountAll({
+      where: { CurrentName: {
+        [Op.like]: `%${id}%`  // <-- la vraie recherche partielle
+      } },
+      attributes: ['Id']
+    });
+    const promises = []
+    promises.push(request)    
+    return functions.countFuntion(request) 
+}
 const CountNbCharactersByClan = (id) => {
   console.log("**** CountNbCharactersByClan   *****************", id);
   const request = model.Character.findAndCountAll({

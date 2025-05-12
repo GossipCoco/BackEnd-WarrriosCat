@@ -4,6 +4,7 @@ require('../Models/associations');
 const functions = require('../Functions/countFunctions')
 const { Op } = require("sequelize");
 
+// -------- COUNT ----------
 
 const countAllCharacters = () => {
     console.log("**** countAllCharacters   *****************");
@@ -65,6 +66,9 @@ const CountCharacterByGrade = id => {
   promises.push(request)
   return functions.countFuntion(request)
 }
+
+// -------- GET ----------
+
 const GetAllCharacters = (nav) => {
     console.log("************ GetAllCharacters ************", nav)
     return model.Character.findAll({
@@ -306,6 +310,9 @@ const GetOneOriginaleCharacterByName = (Name) => {
    }]
   })
 }
+
+// -------- CREATE ----------
+
 const CreateANewCharacter = (data) => {
   console.log("CreateANewCharacter", data);
   const promises = [];
@@ -382,6 +389,8 @@ const CreateAnOriginalCharacter = (usr, data, imagePath) => {
   // Retourne directement la promesse
   return model.Gamer.create(newOriginaleCharacter);
 }
+
+// -------- EDIT ----------
 
 const EditOriginalCharacter = (id, data) => {
   console.log("******CreateAnOriginalCharacter******",id, data);

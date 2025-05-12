@@ -16,9 +16,15 @@ Character.CountNbCharactersByClan = (req, res) => {
 Character.CountCharacterByGrade = (req, res) => {
     handleResponse(res, query.CountCharacterByGrade(req.params.id))
 }
+Character.CountNbOriginaleCharacterByName = (req, res) => {
+    handleResponse(res, query.CountNbOriginaleCharacterByName(req.params.id))
+}
 /* GET */
 Character.GetAllCharacters = (req, res) => {
     handleResponse(res, query.GetAllCharacters(req.body.nav))
+}
+Character.GetOriginalCharacterByName = (req, res) => {
+    handleResponse(res, query.GetOriginalCharacterByName(req.params.id, req.body))
 }
 Character.GetAllCharactersByClan = (req, res) => {
     handleResponse(res, query.GetAllCharactersByClan(req.params.id, req.body))

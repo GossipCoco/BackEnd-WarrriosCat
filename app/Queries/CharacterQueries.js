@@ -33,6 +33,16 @@ const CountNbOriginaleCharacterByUser = (usr) => {
     promises.push(request)    
     return functions.countFuntion(request)  
 }
+const CountNbOriginaleCharacterByName = (id) =>{  
+    console.log("********** CountNbOriginaleCharacterByName   *****************", usr);
+    const request = model.Gamer.findAndCountAll({
+      where: { CurrentName: `%${id}%` },
+      attributes: ['Id']
+    });
+    const promises = []
+    promises.push(request)    
+    return functions.countFuntion(request) 
+}
 const CountNbCharactersByClan = (id) => {
   console.log("**** CountNbCharactersByClan   *****************", id);
   const request = model.Character.findAndCountAll({
@@ -269,6 +279,15 @@ const GetOriginaleCharacterByUser = (usr, nav) => {
     order: [["CurrentName", "ASC"]],
   })
 }
+const GetOriginalCharacterByName = (id, nav) => {
+  console.log("GetOriginalCharacterByName", id, nav);
+  return model.Gamer.findAll({
+    where: { CurrentName: `%${name}%` }, 
+    offset: nav.step * nav.current,
+    limit: nav.step,
+    order: [["CurrentName", "ASC"]],
+  })
+}
 const GetOneOriginaleCharacterByName = (Name) => {  
   console.log("GetOneOriginaleCharacterByUser", Name);
   return model.Gamer.findOne({
@@ -386,6 +405,7 @@ const ReturnPromise = (promise, request) => {
 }
   module.exports = {
     countAllCharacters,
+    CountNbOriginaleCharacterByName,
     CountCharacterByNameSearch,
     CountNbOriginaleCharacterByUser,
     CountNbCharactersByClan,
@@ -396,6 +416,7 @@ const ReturnPromise = (promise, request) => {
     GetAllCharactersDashboard,
     GetAllNamesAndIdsCharacters,
     GetAllNamesAndIdsOriginaCharacters,
+    GetOriginalCharacterByName,
     GetAllCharactersByUser,
     GetCharacterByName,
     GetCharacterByNameSearch,

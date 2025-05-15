@@ -80,12 +80,9 @@ const GetAllCharacters = (nav) => {
         { model: model.Grade,
           attributes:['Name'] },
         { model: model.Clan,
-          attributes:['Id', 'Name', 'Image']
-        },
-        {
-          model: model.Warrior,
-          attributes:['Name']          
-        },
+          attributes:['Id', 'Name', 'Image'] },
+        { model: model.Warrior,
+          attributes:['Name'] },
       ],
     });
   };
@@ -147,13 +144,10 @@ const GetAllCharacters = (nav) => {
       order: [["UserName", "ASC"]],
       include: [        
         { model: model.Grade },
-        {
-          model: model.Clan,
-          include: [{ model: model.Location }],
-          
+        { model: model.Clan,
+          include: [{ model: model.Location }]          
         },
-        {
-          model: model.Warrior,
+        { model: model.Warrior,
           include: [
             {
               model: model.Clan,
@@ -181,7 +175,6 @@ const GetAllCharacters = (nav) => {
               model: model.Fiction,            
               attributes: ['Id', 'Title'],
             }]
-
           }]
         },
         { model: model.Chronology },
@@ -193,6 +186,7 @@ const GetAllCharacters = (nav) => {
         },
         {
           model: model.Warrior,
+          attributes:['Name'],
           include: [
             {
               model: model.Clan,

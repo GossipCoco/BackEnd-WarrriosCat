@@ -48,11 +48,10 @@ Character.GetCharacterByNameSearch = (req, res) => {
 Character.GetOriginaleCharacterByUser = (req, res) => {
     const id = req.params.id
     const data = req.body
-    handleResponse(res, query.GetOriginaleCharacterByUser(id, data))
+    handleResponse(res, originalCharacterQuery.GetOriginaleCharacterByUser(id, data))
 }
 Character.GetAllNamesAndIdsOriginaCharacters = (req, res) => {
-    console.log("GetAllNamesAndIdsOriginaCharacters", req.params.id)
-    handleResponse(res, query.GetAllNamesAndIdsOriginaCharacters(req.params.id))
+    handleResponse(res, originalCharacterQuery.GetAllNamesAndIdsOriginaCharacters(req.params.id))
 }
 Character.CreateANewCharacter = (req, res) => {
     const data = req.body;
@@ -75,7 +74,6 @@ Character.GetOneOriginaleCharacterByName = (req, res) => {
     handleResponse(res, originalCharacterQuery.GetOneOriginaleCharacterByName(req.params.id))
 }
 Character.CreateAnOriginalCharacter = (req, res) => {
-    console.log("CreateAnOriginalCharacter")
     const usr = req.params.id
     const data = {...req.body}
     const imageFile = req.file ? req.file.filename : null;

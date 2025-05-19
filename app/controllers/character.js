@@ -25,9 +25,7 @@ Character.CountNbOriginaleCharacterByName = (req, res) => {
 Character.GetAllCharacters = (req, res) => {
     handleResponse(res, query.GetAllCharacters(req.body.nav))
 }
-Character.GetOriginalCharacterByName = (req, res) => {
-    handleResponse(res, originalCharacterQuery.GetOriginalCharacterByName(req.params.id, req.body))
-}
+
 Character.GetAllCharactersByClan = (req, res) => {
     handleResponse(res, query.GetAllCharactersByClan(req.params.id, req.body))
 }
@@ -45,14 +43,18 @@ Character.GetCharacterByNameSearch = (req, res) => {
     const id = req.params.name
     handleResponse(res, query.GetCharacterByNameSearch(id, req.body))
 }
-Character.GetOriginaleCharacterByUser = (req, res) => {
-    const id = req.params.id
-    const data = req.body
-    handleResponse(res, originalCharacterQuery.GetOriginaleCharacterByUser(id, data))
+
+Character.GetAllCharactersByNameGradeAndClan = (req, res) => {
+    handleResponse(res, query.GetAllCharactersByNameGradeAndClan(req.body))
 }
-Character.GetAllNamesAndIdsOriginaCharacters = (req, res) => {
-    handleResponse(res, originalCharacterQuery.GetAllNamesAndIdsOriginaCharacters(req.params.id))
+
+Character.GetAllNamesAndIdsCharacters = (req, res) => {
+    handleResponse(res, query.GetAllNamesAndIdsCharacters())
 }
+Character.GetAllCharactersByUser = (req, res) => {
+    handleResponse(res, query.GetAllCharactersByUser(req.params.id))
+}
+
 Character.CreateANewCharacter = (req, res) => {
     const data = req.body;
     const imageFile = req.file;
@@ -61,11 +63,16 @@ Character.CreateANewCharacter = (req, res) => {
     }
     handleResponse(res, query.CreateANewCharacter(data))
 }
-Character.GetAllNamesAndIdsCharacters = (req, res) => {
-    handleResponse(res, query.GetAllNamesAndIdsCharacters())
+Character.GetOriginaleCharacterByUser = (req, res) => {
+    const id = req.params.id
+    const data = req.body
+    handleResponse(res, originalCharacterQuery.GetOriginaleCharacterByUser(id, data))
 }
-Character.GetAllCharactersByUser = (req, res) => {
-    handleResponse(res, query.GetAllCharactersByUser(req.params.id))
+Character.GetOriginalCharacterByName = (req, res) => {
+    handleResponse(res, originalCharacterQuery.GetOriginalCharacterByName(req.params.id, req.body))
+}
+Character.GetAllNamesAndIdsOriginaCharacters = (req, res) => {
+    handleResponse(res, originalCharacterQuery.GetAllNamesAndIdsOriginaCharacters(req.params.id))
 }
 Character.GetAllNamesOfAllCharacters = (req, res) => {
     handleResponse(res, originalCharacterQuery.GetAllNamesOfAllCharacters())
@@ -84,8 +91,5 @@ Character.CreateAnOriginalCharacter = (req, res) => {
 }
 Character.EditOriginalCharacter = (req, res) => {
     handleResponse(res, originalCharacterQuery.EditOriginalCharacter(req.params.id, req.body))
-}
-Character.GetAllCharactersByNameGradeAndClan = (req, res) => {
-    handleResponse(res, query.GetAllCharactersByNameGradeAndClan(req.body))
 }
 module.exports = Character

@@ -1,23 +1,24 @@
 const query = require('../Queries/CharacterQueries')
+const count = require('../Queries/CharacterCounter')
 const { handleResponse } = require("../Functions/handleResponse");  // Importer la fonction
 const Character = {}
 Character.countAllCharacters = (req, res) => {
-    handleResponse(res, query.countAllCharacters())
+    handleResponse(res, count.countAllCharacters())
 }
 Character.CountCharacterByNameSearch = (req, res) => {
-    handleResponse(res, query.CountCharacterByNameSearch(req.params.id))
+    handleResponse(res, count.CountCharacterByNameSearch(req.params.id))
 }
 Character.CountNbOriginaleCharacterByUser = (req, res) => {
-    handleResponse(res, query.CountNbOriginaleCharacterByUser(req.params.id))
+    handleResponse(res, count.CountNbOriginaleCharacterByUser(req.params.id))
 }
 Character.CountNbCharactersByClan = (req, res) => {
-    handleResponse(res, query.CountNbCharactersByClan(req.params.id))
+    handleResponse(res, count.CountNbCharactersByClan(req.params.id))
 }
 Character.CountCharacterByGrade = (req, res) => {
-    handleResponse(res, query.CountCharacterByGrade(req.params.id))
+    handleResponse(res, count.CountCharacterByGrade(req.params.id))
 }
 Character.CountNbOriginaleCharacterByName = (req, res) => {
-    handleResponse(res, query.CountNbOriginaleCharacterByName(req.params.id))
+    handleResponse(res, count.CountNbOriginaleCharacterByName(req.params.id))
 }
 /* GET */
 Character.GetAllCharacters = (req, res) => {

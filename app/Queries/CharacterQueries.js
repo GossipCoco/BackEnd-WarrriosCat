@@ -67,14 +67,7 @@ const GetAllCharacters = (nav) => {
       order: [["CurrentName", "ASC"]]
     })
   }
-  const GetAllNamesAndIdsOriginaCharacters = (usr) => {
-    console.log("GetAllNamesAndIdsOriginaCharacters", usr)
-    return model.Gamer.findAll({
-      where: { UserId: usr },
-      attributes: ['Id', 'CurrentName'],
-      order: [["CurrentName", "ASC"]]
-    }) 
-  }
+
   const GetAllCharactersByUser = (user) => {
     console.log("GetAllCharactersByUser",user)
     return model.Character.findAll({
@@ -209,6 +202,14 @@ const GetAllNamesOfAllCharacters = async () => {
   return combinedNames;
 }
 
+const GetAllNamesAndIdsOriginaCharacters = (usr) => {
+    console.log("GetAllNamesAndIdsOriginaCharacters", usr)
+    return model.Gamer.findAll({
+      where: { UserId: usr },
+      attributes: ['Id', 'CurrentName'],
+      order: [["CurrentName", "ASC"]]
+    }) 
+}
 const GetOriginaleCharacterByUser = (usr, nav) => {  
   console.log("GetOriginaleCharacterByUser", usr, nav);
   return model.Gamer.findAll({

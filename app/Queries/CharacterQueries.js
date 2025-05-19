@@ -4,69 +4,6 @@ require('../Models/associations');
 const functions = require('../Functions/countFunctions')
 const { Op } = require("sequelize");
 
-// -------- COUNT ----------
-
-const countAllCharacters = () => {
-    console.log("**** countAllCharacters   *****************");
-    const request = model.Character.findAndCountAll({ attributes: ['Id'] });
-    const promises = []
-    promises.push(request)
-    return functions.countFuntion(request)
-  };
-const CountCharacterByNameSearch = (id) => {
-  console.log("**** CountCharacterByNameSearch ****", id);
-  const request = model.Character.findAndCountAll({
-    where: {
-      Id: { [model.Utils.Op.like]: `%${id}%` },
-      CurrentName: { [model.Utils.Op.like]: `%${id}%` }
-    },
-    attributes: ['Id']
-  });
-  const promises = []
-  promises.push(request)
-  return functions.countFuntion(request)
-}
-const CountNbOriginaleCharacterByUser = (usr) => {  
-    console.log("**** CountNbOriginaleCharacterByUser   *****************", usr);
-    const request = model.Gamer.findAndCountAll({
-      where: { UserId: usr },
-      attributes: ['Id']
-    });
-    const promises = []
-    promises.push(request)    
-    return functions.countFuntion(request)  
-}
-const CountNbOriginaleCharacterByName = (id) =>{
-    console.log("********** CountNbOriginaleCharacterByName *****************", id);
-    const request = model.Gamer.findAndCountAll({
-      where: { CurrentName: {
-        [Op.like]: `%${id}%`  // <-- la vraie recherche partielle
-      } },
-      attributes: ['Id']
-    });
-    const promises = []
-    promises.push(request)    
-    return functions.countFuntion(request) 
-}
-const CountNbCharactersByClan = (id) => {
-  console.log("**** CountNbCharactersByClan   *****************", id);
-  const request = model.Character.findAndCountAll({
-    where : { ClanId : id}
-  })
-  const promises = []
-  promises.push(request)
-  return functions.countFuntion(request)
-}
-const CountCharacterByGrade = id => {
-  console.log("**** CountNbCharactersByGrade   *****************", id);
-  const request = model.Character.findAndCountAll({
-    where : { GradeId : id}
-  })
-  const promises = []
-  promises.push(request)
-  return functions.countFuntion(request)
-}
-
 // -------- GET ----------
 
 const GetAllCharacters = (nav) => {
@@ -415,9 +352,9 @@ const ReturnPromise = (promise, request) => {
 }
   module.exports = {
     countAllCharacters,
+    CountNbOriginaleCharacterByName,
     CountCharacterByNameSearch,
     CountNbOriginaleCharacterByUser,
-    CountNbOriginaleCharacterByName,
     CountNbCharactersByClan,
     CountCharacterByGrade,
     GetAllCharacters,

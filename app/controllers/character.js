@@ -1,5 +1,4 @@
 const query = require('../Queries/CharacterQueries')
-const count = require('../Queries/CountCharacterQueries')
 const { handleResponse } = require("../Functions/handleResponse");  // Importer la fonction
 const Character = {}
 

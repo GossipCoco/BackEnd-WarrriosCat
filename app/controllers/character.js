@@ -1,4 +1,5 @@
 const query = require('../Queries/CharacterQueries')
+const count = require('../Queries/CharacterCounter')
 const { handleResponse } = require("../Functions/handleResponse");  // Importer la fonction
 const Character = {}
 
@@ -25,7 +26,7 @@ Character.GetAllCharacters = (req, res) => {
     handleResponse(res, query.GetAllCharacters(req.body.nav))
 }
 Character.GetOriginalCharacterByName = (req, res) => {
-    handleResponse(res, query.GetOriginalCharacterByName(req.params.id, req.body))
+    handleResponse(res, originalCharacterQuery.GetOriginalCharacterByName(req.params.id, req.body))
 }
 Character.GetAllCharactersByClan = (req, res) => {
     handleResponse(res, query.GetAllCharactersByClan(req.params.id, req.body))
@@ -68,10 +69,10 @@ Character.GetAllCharactersByUser = (req, res) => {
     handleResponse(res, query.GetAllCharactersByUser(req.params.id))
 }
 Character.GetAllNamesOfAllCharacters = (req, res) => {
-    handleResponse(res, query.GetAllNamesOfAllCharacters())
+    handleResponse(res, originalCharacterQuery.GetAllNamesOfAllCharacters())
 }
 Character.GetOneOriginaleCharacterByName = (req, res) => {
-    handleResponse(res, query.GetOneOriginaleCharacterByName(req.params.id))
+    handleResponse(res, originalCharacterQuery.GetOneOriginaleCharacterByName(req.params.id))
 }
 Character.CreateAnOriginalCharacter = (req, res) => {
     console.log("CreateAnOriginalCharacter")
@@ -81,10 +82,10 @@ Character.CreateAnOriginalCharacter = (req, res) => {
     if (imageFile) {
         data.Image = imageFile;
       }
-    handleResponse(res, query.CreateAnOriginalCharacter(usr, data, imageFile ))
+    handleResponse(res, originalCharacterQuery.CreateAnOriginalCharacter(usr, data, imageFile ))
 }
 Character.EditOriginalCharacter = (req, res) => {
-    handleResponse(res, query.EditOriginalCharacter(req.params.id, req.body))
+    handleResponse(res, originalCharacterQuery.EditOriginalCharacter(req.params.id, req.body))
 }
 Character.GetAllCharactersByNameGradeAndClan = (req, res) => {
     handleResponse(res, query.GetAllCharactersByNameGradeAndClan(req.body))

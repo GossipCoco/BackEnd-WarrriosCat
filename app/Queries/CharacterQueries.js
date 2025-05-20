@@ -163,14 +163,7 @@ const GetCharacterByNameSearch = (name, nav) => {
     include: [
       {model: model.Clan,},
       { model: model.Grade },
-      {
-        model: model.Warrior,
-        include: [
-          {
-            model: model.Clan,            
-          },
-        ],
-      },
+      { model: model.Warrior },
     ],
   });
 };

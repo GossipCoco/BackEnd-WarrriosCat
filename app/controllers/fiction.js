@@ -7,19 +7,15 @@ const Fiction = {}
 Fiction.countAllMyFictions = async (req, res) => {
   handleResponse(res, queries.countAllMyFictions(req.params.id));
 };
-
 Fiction.countAllFictionsOnBases = async (req, res) => {
   handleResponse(res, queries.countAllFictionsOnBases());
 };
-
 Fiction.CountTotalWordBuUser = async (req, res) => {
   handleResponse(res, queries.CountTotalWordBuUser(req.params.id));
 };
-
 Fiction.CountTotalWordBuUserV2 = async (req, res) => {
   handleResponse(res, queries.CountTotalWordByUserV2(req.params.id));
 };
-
 Fiction.GetAllFictionsOnBase = async (req, res) => {
   handleResponse(res, queries.GetAllFictionsOnBase(req.body));
 };
@@ -43,17 +39,13 @@ Fiction.GetFiveLastChapByUser = async (req, res) => {
 Fiction.CreateANewChapter = async (req, res) => {
   handleResponse(res, queries.CreateANewChapter(req.params.id, req.body, req.file.filename));
 };
-
 Fiction.AddRating = async (req, res) => {
-
   handleResponse(res, queries.AddRating(req.params.id, req.body));
 };
-
 Fiction.CreateCommentForAFiction = async (req, res) => {
   const { Content, UserId, FictionId } = req.body;
   handleResponse(res, queries.CreateCommentForAFiction(req.params.id, { Content, UserId, FictionId }));
 };
-
 Fiction.GetAllCommentsByFiction = async (req, res) => {
   handleResponse(res, queries.GetAllCommentsByFiction(req.params.id, req.body));
 };

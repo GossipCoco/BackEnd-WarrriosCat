@@ -25,7 +25,6 @@ Character.CountNbOriginaleCharacterByName = (req, res) => {
 Character.GetAllCharacters = (req, res) => {
     handleResponse(res, query.GetAllCharacters(req.body.nav))
 }
-
 Character.GetAllCharactersByClan = (req, res) => {
     handleResponse(res, query.GetAllCharactersByClan(req.params.id, req.body))
 }
@@ -43,18 +42,15 @@ Character.GetCharacterByNameSearch = (req, res) => {
     const id = req.params.name
     handleResponse(res, query.GetCharacterByNameSearch(id, req.body))
 }
-
 Character.GetAllCharactersByNameGradeAndClan = (req, res) => {
     handleResponse(res, query.GetAllCharactersByNameGradeAndClan(req.body))
 }
-
 Character.GetAllNamesAndIdsCharacters = (req, res) => {
     handleResponse(res, query.GetAllNamesAndIdsCharacters())
 }
 Character.GetAllCharactersByUser = (req, res) => {
     handleResponse(res, query.GetAllCharactersByUser(req.params.id))
 }
-
 Character.CreateANewCharacter = (req, res) => {
     const data = req.body;
     const imageFile = req.file;

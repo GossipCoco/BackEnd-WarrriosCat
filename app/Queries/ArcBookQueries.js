@@ -46,10 +46,6 @@ const GetLastPublishedBook = () => {
         limit: 1,
         order: [['PublishDate', 'DESC']],
         attributes:['Id', 'Title', 'Summary', 'Image']
-        
-        // include:[{
-        //     model: model.Arc
-        // }]
     })
 }
 const GetCurrentArc = () => {

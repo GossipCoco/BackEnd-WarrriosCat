@@ -150,7 +150,7 @@ const GetAllCommentsByFiction = (id, nav) => {
     ],
   })
 }
-const AddRating = (id, data) => {
+const UpdateRating = (id, data) => {
   console.log("**** AddRating ****", id, data);
   const promises = []
   const request = model.Rating.create({
@@ -246,13 +246,13 @@ const UploadFictionBackgroundIllustration = (id, image) => {
 const queries = {
   GetAllFictionsOnBase,
   GetAllFictionsByName,
-  AddRating,
-  CreateCommentForAFiction,
   GetAllCommentsByFiction,
   GetAllFictionsByUser,
+  GetAllAUthors,
+  UpdateRating,
+  CreateCommentForAFiction,
   UpdateFictionIllustration,
   UploadFictionBackgroundIllustration,
-  GetAllAUthors
 };
 
 module.exports = queries;

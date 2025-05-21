@@ -40,8 +40,8 @@ Fiction.GetFiveLastChapByUser = async (req, res) => {
 Fiction.CreateANewChapter = async (req, res) => {
   handleResponse(res, queries.CreateANewChapter(req.params.id, req.body, req.file.filename));
 };
-Fiction.AddRating = async (req, res) => {
-  handleResponse(res, queries.AddRating(req.params.id, req.body));
+Fiction.UpdateRating = async (req, res) => {
+  handleResponse(res, queries.UpdateRating(req.params.id, req.body));
 };
 Fiction.CreateCommentForAFiction = async (req, res) => {
   const { Content, UserId, FictionId } = req.body;

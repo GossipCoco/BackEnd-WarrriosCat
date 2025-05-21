@@ -3,9 +3,6 @@ const model = require('../Models');
 require('../Models/associations');
 const functions = require('../Functions/countFunctions')
 
-const WhereByUser =  { model: model.User, attributes: ['Id', 'UserName']}
-const modelChapter = { model: model.Chapter }
-
 const countAllMyFictions = (usr) => {
   console.log("************ countAllMyFictions********* ", usr);
   const promises = []

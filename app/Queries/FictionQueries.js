@@ -150,7 +150,29 @@ const GetAllCommentsByFiction = (id, nav) => {
     ],
   })
 }
-const AddRating = (id, data) => {
+
+const CreateCommentForAFiction = (id, data) => {
+  console.log("**** CreateCommentForAFiction ****", id, data);
+  const promises = []
+  const comment = model.Comments.create({
+    Id: uuidv4(),
+    Content: data.Content,
+    DateCreation: new Date().toISOString(),
+    UserId: data.UserId,
+    FictionId: data.FictionId,
+  })
+  console.log(comment)
+  promises.push(comment)
+  return comment
+    .then((w) =>{
+      return Promise.all(promises);
+    })
+    .catch((err) => {
+      console.log(err);
+      return Promise.reject(err);
+    });
+}
+const UpdateRating = (id, data) => {
   console.log("**** AddRating ****", id, data);
   const promises = []
   const request = model.Rating.create({
@@ -181,27 +203,6 @@ const AddRating = (id, data) => {
         .then(() => {
           console.log('Note moyenne mise à jour avec succès.');
         })
-    })
-    .catch((err) => {
-      console.log(err);
-      return Promise.reject(err);
-    });
-}
-const CreateCommentForAFiction = (id, data) => {
-  console.log("**** CreateCommentForAFiction ****", id, data);
-  const promises = []
-  const comment = model.Comments.create({
-    Id: uuidv4(),
-    Content: data.Content,
-    DateCreation: new Date().toISOString(),
-    UserId: data.UserId,
-    FictionId: data.FictionId,
-  })
-  console.log(comment)
-  promises.push(comment)
-  return comment
-    .then((w) =>{
-      return Promise.all(promises);
     })
     .catch((err) => {
       console.log(err);
@@ -246,13 +247,10 @@ const UploadFictionBackgroundIllustration = (id, image) => {
 const queries = {
   GetAllFictionsOnBase,
   GetAllFictionsByName,
-  AddRating,
-  CreateCommentForAFiction,
   GetAllCommentsByFiction,
   GetAllFictionsByUser,
-  UpdateFictionIllustration,
-  UploadFictionBackgroundIllustration,
-  GetAllAUthors
+  GetAllAUthors,
+  CreateCommentForAFiction,
 };
 
 module.exports = queries;

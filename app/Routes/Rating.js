@@ -3,5 +3,5 @@ const Fiction = require('../controllers/fiction');
 const router = express.Router();
 
 router
-.post('/AddRating/:id', Fiction.AddRating)
+.post('/UpdateRating/:id', Fiction.UpdateRating)
 module.exports = router;

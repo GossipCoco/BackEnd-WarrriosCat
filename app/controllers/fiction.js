@@ -1,6 +1,7 @@
 const queries = require("../Queries/FictionQueries");
 const query = require('../Queries/CreationUpdateGameQueries')
 const count = require('../Queries/FictionCount')
+const update = require('../Queries/FictionUpdate')
 const { handleResponse } = require("../Functions/handleResponse");  // Importer la fonction
 const Fiction = {}
 
@@ -17,58 +18,44 @@ Fiction.CountTotalWordBuUser = async (req, res) => {
 Fiction.CountTotalWordBuUserV2 = async (req, res) => {
   handleResponse(res, count.CountTotalWordByUserV2(req.params.id));
 };
+//--------- GET
 Fiction.GetAllFictionsOnBase = async (req, res) => {
   handleResponse(res, queries.GetAllFictionsOnBase(req.body));
 };
-
 Fiction.GetAllFictionsByName = async (req, res) => {
   handleResponse(res, queries.GetAllFictionsByName(req.params.id, req.body));
-};
-
-Fiction.GetAChapterByName = async (req, res) => {
-  handleResponse(res, queries.GetAChapterByName(req.params.id, req.body));
-};
-
-Fiction.GetLastChapterOfAFiction = async (req, res) => {
-  handleResponse(res, queries.GetLastChapterOfAFiction(req.params.id));
-};
-
-Fiction.GetFiveLastChapByUser = async (req, res) => {
-  handleResponse(res, queries.GetFiveLastChapByUser(req.params.id));
-};
-
-Fiction.CreateANewChapter = async (req, res) => {
-  handleResponse(res, queries.CreateANewChapter(req.params.id, req.body, req.file.filename));
-};
-Fiction.AddRating = async (req, res) => {
-  handleResponse(res, queries.AddRating(req.params.id, req.body));
-};
-Fiction.CreateCommentForAFiction = async (req, res) => {
-  const { Content, UserId, FictionId } = req.body;
-  handleResponse(res, queries.CreateCommentForAFiction(req.params.id, { Content, UserId, FictionId }));
 };
 Fiction.GetAllCommentsByFiction = async (req, res) => {
   handleResponse(res, queries.GetAllCommentsByFiction(req.params.id, req.body));
 };
-
 Fiction.GetAllFictionsByUser = async (req, res) => {
   handleResponse(res, queries.GetAllFictionsByUser(req.params.id, req.body));
 };
+Fiction.GetAllAUthors = (req, res) => {
+  handleResponse(res, queries.GetAllAUthors())
+}
+// -------- Create
+Fiction.CreateCommentForAFiction = async (req, res) => {
+  const { Content, UserId, FictionId } = req.body;
+  handleResponse(res, queries.CreateCommentForAFiction(req.params.id, { Content, UserId, FictionId }));
+};
+
+// -------- Update
+Fiction.UpdateRating = async (req, res) => {
+  handleResponse(res, update.UpdateRating(req.params.id, req.body));
+};
 Fiction.EditChapter = async (req, res) => {
-  handleResponse(res, queries.EditChapter(req.params.id, req.body))
+  handleResponse(res, update.EditChapter(req.params.id, req.body))
 }
 Fiction.UpdateFictionIllustration = async (req, res) => {
   const id = req.params.id
   const imagePath = req.file ? req.file.filename : null;
-  handleResponse(res, queries.UpdateFictionIllustration(id, imagePath))
+  handleResponse(res, update.UpdateFictionIllustration(id, imagePath))
 }
 Fiction.UploadFictionBackgroundIllustration = async (req, res) => {
   console.log(req.params.id)
   const id = req.params.id
   const imagePath = req.file ? req.file.filename : null;
-  handleResponse(res, queries.UploadFictionBackgroundIllustration(id, imagePath))
-}
-Fiction.GetAllAUthors = (req, res) => {
-  handleResponse(res, queries.GetAllAUthors())
+  handleResponse(res, update.UploadFictionBackgroundIllustration(id, imagePath))
 }
 module.exports = Fiction;

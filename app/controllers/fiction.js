@@ -44,9 +44,6 @@ Fiction.CreateCommentForAFiction = async (req, res) => {
 Fiction.UpdateRating = async (req, res) => {
   handleResponse(res, update.UpdateRating(req.params.id, req.body));
 };
-Fiction.EditChapter = async (req, res) => {
-  handleResponse(res, update.EditChapter(req.params.id, req.body))
-}
 Fiction.UpdateFictionIllustration = async (req, res) => {
   const id = req.params.id
   const imagePath = req.file ? req.file.filename : null;

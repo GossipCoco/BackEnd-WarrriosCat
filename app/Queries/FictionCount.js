@@ -66,3 +66,4 @@ const queries = {
   CountTotalWordBuUser,
   CountTotalWordByUserV2
 }
+module.exports = queries;

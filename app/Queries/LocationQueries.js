@@ -21,7 +21,7 @@ const countAllLocations = () => {
   return functions.countFuntion(request)
 }
 const GetAllClans = (nav) => {
-  console.log("**** GetClanById ****", nav)
+  console.log("**** GetAllClans ****", nav)
     return model.Clan.findAll({      
       offset: nav.step * nav.current,
       limit: nav.step,

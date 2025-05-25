@@ -3,6 +3,7 @@ const { handleResponse } = require("../Functions/handleResponse");  // Importer 
 const Clan = {};
 
 Clan.countAllClans = async (req, res) => {
+  console.log("******* countAllClans ********");
   handleResponse(res, query.countAllClans())
 }
 Clan.countAllLocations = async (req, res) => {

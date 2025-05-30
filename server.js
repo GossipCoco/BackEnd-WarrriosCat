@@ -29,6 +29,7 @@ const Rating = require('./app/Routes/Rating')
 const Chapter = require('./app/Routes/Chapter')
 const Message = require('./app/Routes/Message')
 const Kind = require('./app/Routes/Kind')
+const Group = require('./app/Routes/Group')
 
 const corsOptions = {
     // origin: '*',
@@ -75,6 +76,7 @@ app
   .use('/rating', Rating)
   .use('/message', Message)
   .use('/Kind', Kind)
+  .use('/Group', Group)
   .use(function (req, res) {
     res.setHeader('Content-Type', 'application/json');
     res.status(404).send({ result: 'error' });

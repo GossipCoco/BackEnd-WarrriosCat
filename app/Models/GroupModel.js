@@ -1,6 +1,6 @@
 const { DataTypes } = require('sequelize');
 const connection = require('../DataLayer/connection');
-
+const functions = require ('./Function')
 const Group = connection.define(
     "Group",
     {

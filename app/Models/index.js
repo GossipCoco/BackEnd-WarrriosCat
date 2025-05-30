@@ -60,7 +60,8 @@ const QuestKeyObject = require('./QuestKeyObjectModel')
 const GameGamer = require('./GameGamerModel')
 const Kind = require('./Kind')
 const FictionKind = require('./FictionKind')
-
+const Group = require('./GroupModel')
+const UserGroup = require('./UserGroupModel')
 
 // Exporter les modèles
 const models = {
@@ -125,6 +126,8 @@ const models = {
   GameGamer,
   Kind,
   FictionKind,
+  Group,
+  UserGroup,
   sequelize: connection,
   Utils: {
     Op,

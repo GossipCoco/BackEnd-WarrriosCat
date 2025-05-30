@@ -1,14 +1,14 @@
 const { DataTypes } = require('sequelize');
 const connection = require('../DataLayer/connection');
 const functions = require ('./Function')
-const Group = connection.define(
-    "Group",
+const  UserGroup = connection.define(
+    "UserGroup",
     {
       Id: {
         type: DataTypes.STRING,
         primaryKey: true,
       },
-      Name:{
+      Role:{
         type: DataTypes.STRING,
       },
       CreatedAt:{
@@ -19,8 +19,9 @@ const Group = connection.define(
         type: 'DATETIME',
         defaultValue: new Date(functions.toDateTime(Date.now())).toISOString()
       },
-    },
 
+    },
     { freezeTableName: true, timestamps: false }
 )
-  module.exports = Group
+
+module.exports = UserGroup;

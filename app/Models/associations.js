@@ -59,6 +59,8 @@ const {
   Sequelize,
   Kind,
   FictionKind,
+  Group,
+  UserGroup,
   sequelize: connection,
   Utils: {
     Op,
@@ -315,6 +317,12 @@ Fiction.hasMany(FictionKind)
 FictionKind.belongsTo(Kind, {foreignKey: 'KindId'})
 Kind.hasMany(FictionKind)
 
+User.hasMany(UserGroup, { foreignKey: 'UserId' });
+UserGroup.belongsTo(User, { foreignKey: 'UserId' });
+
+Group.hasMany(UserGroup, { foreignKey: 'GroupId' });
+UserGroup.belongsTo(Group, { foreignKey: 'GroupId' });
+
 module.exports = {
   User,
   Level,
@@ -373,6 +381,8 @@ module.exports = {
   Kind,
   FictionKind,
   Sequelize,
+  Group,
+  UserGroup,
   sequelize: connection,
   Utils: {
     Op,

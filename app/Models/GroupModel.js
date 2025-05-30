@@ -11,6 +11,9 @@ const Group = connection.define(
       Name:{
         type: DataTypes.STRING,
       },
+      Image:{
+        type: DataTypes.STRING,
+      },
       CreatedAt:{
         type: 'DATETIME',
         defaultValue: new Date(functions.toDateTime(Date.now())).toISOString()

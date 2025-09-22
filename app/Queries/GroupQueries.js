@@ -16,7 +16,19 @@ const GetAllGroupsWithAllUsers = () => {
         }]
     })
 }
+const GetAGroupById = (id) => {
+    return model.Group.findOne({
+        where: { Id: id },
+        include:[{
+            model: model.UserGroup,
+            include:[{
+                model: model.User                
+            }]
+        }]
+    })
+}
 module.exports = {
     GetAllGroups,
-    GetAllGroupsWithAllUsers
+    GetAllGroupsWithAllUsers,
+    GetAGroupById
 }

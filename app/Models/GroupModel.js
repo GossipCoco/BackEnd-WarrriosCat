@@ -11,6 +11,9 @@ const Group = connection.define(
       Name:{
         type: DataTypes.STRING,
       },
+      Description:{
+        type: DataTypes.TEXT,
+      },
       Image:{
         type: DataTypes.STRING,
       },

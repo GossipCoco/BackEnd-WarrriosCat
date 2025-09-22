@@ -8,5 +8,9 @@ Group.GetAllGroups = (req, res) => {
 Group.GetAllGroupsWithAllUsers = (req, res) => {
     handleResponse(res, query.GetAllGroupsWithAllUsers())
 }
+Group.GetAGroupById = (req, res) => {
+    const id = req.params.id;
+    handleResponse(res, query.GetAGroupById(id))
+}
 
 module.exports = Group

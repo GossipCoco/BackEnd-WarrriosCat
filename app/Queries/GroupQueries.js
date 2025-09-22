@@ -16,6 +16,7 @@ const GetAllGroupsWithAllUsers = () => {
         }]
     })
 }
+
 module.exports = {
     GetAllGroups,
     GetAllGroupsWithAllUsers

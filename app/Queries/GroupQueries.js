@@ -17,6 +17,7 @@ const GetAllGroupsWithAllUsers = () => {
     })
 }
 const GetAGroupById = (id) => {
+    console.log("**** GetAGroupById ****", id);
     return model.Group.findOne({
         where: { Id: id },
         include:[{

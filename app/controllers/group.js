@@ -3,7 +3,7 @@ const { handleResponse } = require("../Functions/handleResponse");  // Importer 
 const query = require('../Queries/GroupQueries')
 
 Group.GetAllGroups = (req, res) => {
-    handleResponse(res, query.GetAllGroups())
+    handleResponse(res, query.GetAllGroups(req.body))
 }
 Group.GetAllGroupsWithAllUsers = (req, res) => {
     handleResponse(res, query.GetAllGroupsWithAllUsers())

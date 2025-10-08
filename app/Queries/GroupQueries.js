@@ -2,7 +2,8 @@ const { v4: uuidv4 } = require('uuid');
 const model = require('../Models');
 require('../Models/associations');
 
-const GetAllGroups = () =>{
+const GetAllGroups = (nav) =>{
+    console.log("**** GetAllGroups ****",nav);
     return model.Group.findAll({})
 }
 const GetAllGroupsWithAllUsers = () => {

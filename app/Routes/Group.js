@@ -3,7 +3,7 @@ const Group = require('../controllers/group')
 const router = express.Router()
 
 router
-.get('/', Group.GetAllGroups)
+.post('/', Group.GetAllGroups)
 .get('/GetAllGroupsWithAllUsers', Group.GetAllGroupsWithAllUsers)
 .post('/GetAGroupById/:id', Group.GetAGroupById)
 

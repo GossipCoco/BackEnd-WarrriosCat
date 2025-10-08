@@ -13,7 +13,7 @@ Group.GetAGroupById = (req, res) => {
     const id = req.params.id;
     handleResponse(res, query.GetAGroupById(id))
 }
-Group.countAllGroups = (req, res) => {
-    handleResponse(res, count.countAllGroups())
+Group.CountAllGroups = (req, res) => {
+    handleResponse(res, count.CountAllGroups())
 }   
 module.exports = Group

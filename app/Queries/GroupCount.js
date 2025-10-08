@@ -3,7 +3,7 @@ const model = require('../Models');
 require('../Models/associations');
 const functions = require('../Functions/countFunctions')
 
-const countAllGroups = () => {
+const CountAllGroups = () => {
     console.log("******* countAllGroups ********");
     const promises = []
     const request = model.Group.findAndCountAll({});
@@ -11,6 +11,6 @@ const countAllGroups = () => {
     return functions.countFuntion(request)
 
 }
-const queries = {
-    countAllGroups
+module.exports = {
+    CountAllGroups
 };

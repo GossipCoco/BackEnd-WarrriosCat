@@ -4,6 +4,7 @@ const router = express.Router()
 
 router
 .post('/', Group.GetAllGroups)
+.get('/CountAllGroups', Group.CountAllGroups)
 .get('/GetAllGroupsWithAllUsers', Group.GetAllGroupsWithAllUsers)
 .post('/GetAGroupById/:id', Group.GetAGroupById)
 

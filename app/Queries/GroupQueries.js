@@ -4,7 +4,10 @@ require('../Models/associations');
 
 const GetAllGroups = (nav) =>{
     console.log("**** GetAllGroups ****",nav);
-    return model.Group.findAll({})
+    return model.Group.findAll({
+            offset: nav.step * nav.current,
+            limit: nav.step,
+    })
 }
 const GetAllGroupsWithAllUsers = () => {
     return model.Group.findAll({

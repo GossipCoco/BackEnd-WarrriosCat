@@ -324,6 +324,9 @@ UserGroup.belongsTo(User, { foreignKey: 'UserId' });
 Group.hasMany(UserGroup, { foreignKey: 'GroupId' });
 UserGroup.belongsTo(Group, { foreignKey: 'GroupId' });
 
+GroupPost.belongsTo(Group, { foreignKey: 'GroupId' });
+Group.hasMany(GroupPost);
+
 module.exports = {
   User,
   Level,

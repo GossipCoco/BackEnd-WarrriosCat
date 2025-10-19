@@ -16,7 +16,8 @@ const GetAllGroupsWithAllUsers = () => {
             include:[{
                 model: model.User,
                 attributes: ['UserName']
-            }]
+            },
+        {model: model.Group,}]
         }]
     })
 }
@@ -24,7 +25,9 @@ const GetAGroupById = (id) => {
     console.log("**** GetAGroupById ****", id);
     return model.Group.findOne({
         where: { Id: id },
-        include:[{
+        include:[
+            {model: model.GroupPost,},
+            {
             model: model.UserGroup,
             include:[{
                 model: model.User                

@@ -61,6 +61,7 @@ const {
   FictionKind,
   Group,
   UserGroup,
+  GroupPost,
   sequelize: connection,
   Utils: {
     Op,
@@ -383,6 +384,7 @@ module.exports = {
   Sequelize,
   Group,
   UserGroup,
+  GroupPost,
   sequelize: connection,
   Utils: {
     Op,

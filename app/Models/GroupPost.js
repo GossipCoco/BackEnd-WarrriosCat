@@ -18,7 +18,7 @@ const GroupPost = connection.define(
       allowNull: false,
     },
     Title: {
-      type: DataTypes.STRING(140),
+      type: DataTypes.STRING(255),
       allowNull: true,
     },
     Content: {

@@ -62,6 +62,7 @@ const {
   Group,
   UserGroup,
   GroupPost,
+  GroupComment,
   sequelize: connection,
   Utils: {
     Op,
@@ -391,6 +392,7 @@ module.exports = {
   Group,
   UserGroup,
   GroupPost,
+  GroupComment,
   sequelize: connection,
   Utils: {
     Op,

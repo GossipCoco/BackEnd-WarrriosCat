@@ -6,6 +6,9 @@ const GetPostAllCommentReactions = (id) =>{
     console.log("**** GetPostAllCommentReactions ****",id);
     return model.GroupPost.findAll({
         where: { GroupId: id },
+        include:[
+            {model: model.GroupComment}
+        ]
     })
 }
 module.exports = {

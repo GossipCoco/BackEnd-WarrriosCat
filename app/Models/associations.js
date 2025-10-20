@@ -327,17 +327,29 @@ UserGroup.belongsTo(Group, { foreignKey: 'GroupId' });
 GroupPost.belongsTo(Group, { foreignKey: 'GroupId' });
 Group.hasMany(GroupPost);
 
-GroupPost.belongsTo(User, { foreignKey: 'AuthorId' });
-User.hasMany(GroupPost);
+GroupPost.belongsTo(User, { foreignKey: 'AuthorId' }); // pointe vers User.Id
+User.hasMany(GroupPost,   { foreignKey: 'AuthorId' }); // même FK côté inverse
 
+// GroupPost ↔ GroupComment
+GroupPost.hasMany(GroupComment,   { foreignKey: 'PostId' });
 GroupComment.belongsTo(GroupPost, { foreignKey: 'PostId' });
-GroupPost.hasMany(GroupComment);
 
+// User ↔ GroupComment (auteur du commentaire)
+User.hasMany(GroupComment,   { foreignKey: 'AuthorId' });
 GroupComment.belongsTo(User, { foreignKey: 'AuthorId' });
-User.hasMany(GroupComment);
 
-GroupComment.belongsTo(GroupComment, { foreignKey: 'ParentId' });
-GroupComment.hasMany(GroupComment, { foreignKey: 'ParentId' });
+// Thread (réponses à un commentaire) — optionnel mais utile
+GroupComment.hasMany(GroupComment,   { foreignKey: 'ParentId', as: 'Replies' });
+GroupComment.belongsTo(GroupComment, { foreignKey: 'ParentId', as: 'Parent' });
+
+// GroupComment.belongsTo(GroupPost, { foreignKey: 'PostId' });
+// GroupPost.hasMany(GroupComment);
+
+// GroupComment.belongsTo(User, { foreignKey: 'AuthorId' });
+// User.hasMany(GroupComment);
+
+// GroupComment.belongsTo(GroupComment, { foreignKey: 'ParentId' });
+// GroupComment.hasMany(GroupComment, { foreignKey: 'ParentId' });
 
 module.exports = {
   User,

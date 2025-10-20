@@ -63,6 +63,7 @@ const FictionKind = require('./FictionKind')
 const Group = require('./GroupModel')
 const UserGroup = require('./UserGroupModel')
 const GroupPost = require('./GroupPostModel')
+const GroupComment = require('./GroupCommentModel')
 
 // Exporter les modèles
 const models = {
@@ -130,6 +131,7 @@ const models = {
   Group,
   UserGroup,
   GroupPost,
+  GroupComment,
   sequelize: connection,
   Utils: {
     Op,

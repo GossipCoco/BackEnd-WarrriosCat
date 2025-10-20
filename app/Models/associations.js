@@ -62,6 +62,7 @@ const {
   Group,
   UserGroup,
   GroupPost,
+  GroupComment,
   sequelize: connection,
   Utils: {
     Op,
@@ -100,6 +101,7 @@ Message.belongsTo(User, { foreignKey: 'ReceiverId', as: 'Receiver' }); // Un mes
 
 Gamer.belongsTo(User, {foreignKey: "UserId"})
 User.hasMany(Gamer)
+
 
 
 // CHARACTER
@@ -211,8 +213,6 @@ Game.hasMany(GameCharacter);
 
 GameCharacter.belongsTo(Character, { foreignKey: "CharacterId" });
 Character.hasMany(GameCharacter);
-
-
 
 ChapterIllustration.belongsTo(Chapter, { foreignKey: "ChapterId" });
 Chapter.hasMany(ChapterIllustration);
@@ -327,6 +327,18 @@ UserGroup.belongsTo(Group, { foreignKey: 'GroupId' });
 GroupPost.belongsTo(Group, { foreignKey: 'GroupId' });
 Group.hasMany(GroupPost);
 
+GroupPost.belongsTo(User, { foreignKey: 'AuthorId' });
+User.hasMany(GroupPost);
+
+GroupComment.belongsTo(GroupPost, { foreignKey: 'PostId' });
+GroupPost.hasMany(GroupComment);
+
+GroupComment.belongsTo(User, { foreignKey: 'AuthorId' });
+User.hasMany(GroupComment);
+
+GroupComment.belongsTo(GroupComment, { foreignKey: 'ParentId' });
+GroupComment.hasMany(GroupComment, { foreignKey: 'ParentId' });
+
 module.exports = {
   User,
   Level,
@@ -388,6 +400,7 @@ module.exports = {
   Group,
   UserGroup,
   GroupPost,
+  GroupComment,
   sequelize: connection,
   Utils: {
     Op,

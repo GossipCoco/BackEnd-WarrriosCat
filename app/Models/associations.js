@@ -103,6 +103,7 @@ Gamer.belongsTo(User, {foreignKey: "UserId"})
 User.hasMany(Gamer)
 
 
+
 // CHARACTER
 
 Character.belongsTo(Grade, { foreignKey: "GradeId" });
@@ -212,8 +213,6 @@ Game.hasMany(GameCharacter);
 
 GameCharacter.belongsTo(Character, { foreignKey: "CharacterId" });
 Character.hasMany(GameCharacter);
-
-
 
 ChapterIllustration.belongsTo(Chapter, { foreignKey: "ChapterId" });
 Chapter.hasMany(ChapterIllustration);
@@ -330,6 +329,15 @@ Group.hasMany(GroupPost);
 
 GroupPost.belongsTo(User, { foreignKey: 'AuthorId' });
 User.hasMany(GroupPost);
+
+GroupComment.belongsTo(GroupPost, { foreignKey: 'PostId' });
+GroupPost.hasMany(GroupComment);
+
+GroupComment.belongsTo(User, { foreignKey: 'AuthorId' });
+User.hasMany(GroupComment);
+
+GroupComment.belongsTo(GroupComment, { foreignKey: 'ParentId' });
+GroupComment.hasMany(GroupComment, { foreignKey: 'ParentId' });
 
 module.exports = {
   User,

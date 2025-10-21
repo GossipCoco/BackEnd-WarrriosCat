@@ -64,6 +64,8 @@ const Group = require('./GroupModel')
 const UserGroup = require('./UserGroupModel')
 const GroupPost = require('./GroupPostModel')
 const GroupComment = require('./GroupCommentModel')
+const PostReaction = require('./PostReactionModel')
+const CommentReaction = require('./CommentReactionModel')
 
 // Exporter les modèles
 const models = {
@@ -132,6 +134,8 @@ const models = {
   UserGroup,
   GroupPost,
   GroupComment,
+  PostReaction,
+  CommentReaction,
   sequelize: connection,
   Utils: {
     Op,

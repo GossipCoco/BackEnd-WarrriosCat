@@ -63,6 +63,8 @@ const {
   UserGroup,
   GroupPost,
   GroupComment,
+  PostReaction,
+  CommentReaction,
   sequelize: connection,
   Utils: {
     Op,
@@ -342,6 +344,23 @@ GroupComment.belongsTo(User, { foreignKey: 'AuthorId' });
 GroupComment.hasMany(GroupComment,   { foreignKey: 'ParentId', as: 'Replies' });
 GroupComment.belongsTo(GroupComment, { foreignKey: 'ParentId', as: 'Parent' });
 
+
+// Post ↔ PostReaction
+GroupPost.hasMany(PostReaction,   { foreignKey: 'PostId' });
+PostReaction.belongsTo(GroupPost, { foreignKey: 'PostId' });
+
+// Comment ↔ CommentReaction
+GroupComment.hasMany(CommentReaction,   { foreignKey: 'CommentId' });
+CommentReaction.belongsTo(GroupComment, { foreignKey: 'CommentId' });
+
+// User ↔ Reactions
+User.hasMany(PostReaction,      { foreignKey: 'UserId' });
+PostReaction.belongsTo(User,    { foreignKey: 'UserId' });
+
+User.hasMany(CommentReaction,   { foreignKey: 'UserId' });
+CommentReaction.belongsTo(User, { foreignKey: 'UserId' });
+
+
 // GroupComment.belongsTo(GroupPost, { foreignKey: 'PostId' });
 // GroupPost.hasMany(GroupComment);
 
@@ -413,6 +432,8 @@ module.exports = {
   UserGroup,
   GroupPost,
   GroupComment,
+  PostReaction,
+  CommentReaction,
   sequelize: connection,
   Utils: {
     Op,

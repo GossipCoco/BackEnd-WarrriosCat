@@ -7,7 +7,8 @@ const GetPostAllCommentReactions = (id) =>{
     return model.GroupPost.findAll({
         where: { GroupId: id },
         include:[
-            {model: model.GroupComment}
+            {model: model.GroupComment},
+            {model: model.PostReaction}
         ]
     })
 }

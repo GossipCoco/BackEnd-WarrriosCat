@@ -26,12 +26,6 @@ const GetAGroupById = (id) => {
     return model.Group.findOne({
         where: { Id: id },
         include:[
-            {model: model.GroupPost,
-                include:[{
-                    model: model.User,
-                    attributes: ['UserName']
-                }]
-            },
             {
             model: model.UserGroup,
             include:[{

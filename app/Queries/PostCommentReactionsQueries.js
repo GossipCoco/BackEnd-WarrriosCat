@@ -8,12 +8,7 @@ const GetPostAllCommentReactions = (id) =>{
         where: { GroupId: id },
         limit: 3,
         include:[
-            {model: model.GroupPost,
-                include:[{
-                    model: model.User,
-                    attributes: ['UserName']
-                }]
-            },
+            { model: model.User,attributes: ['UserName']},
             {model: model.GroupComment},
             {model: model.PostReaction}
         ]

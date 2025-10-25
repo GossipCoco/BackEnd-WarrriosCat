@@ -8,9 +8,24 @@ const GetPostAllCommentReactions = (id) =>{
         where: { GroupId: id },
         limit: 3,
         include:[
-            { model: model.User,attributes: ['UserName']},
+            { model: model.User,attributes: ['UserName', 'Avatar']},
             { model: model.GroupComment},
             { model: model.PostReaction}
+        ]
+    })
+}
+const GetAPostAllCommentReactionsById = (id) =>{
+    console.log("**** GetAPostAllCommentReactions ****",id);
+    return model.GroupPost.findOne({
+        where: { Id: id },
+        include:[
+            { model: model.User,attributes: ['UserName', 'Avatar']},
+            { model: model.GroupComment},
+            { model: model.PostReaction},
+            {
+                model: model.Group,
+                attributes: ['Id', 'Image', 'Name']
+            }
         ]
     })
 }
@@ -30,5 +45,6 @@ const CreateANewPost = (id, data) => {
 }
 module.exports = {
     GetPostAllCommentReactions,
+    GetAPostAllCommentReactionsById,
     CreateANewPost
 }

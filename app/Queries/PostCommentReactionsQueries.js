@@ -24,7 +24,7 @@ const GetAPostAllCommentReactionsById = (id) =>{
             { model: model.PostReaction},
             {
                 model: model.Group,
-                attributes: ['Id']
+                attributes: ['Id', 'Image', 'Name']
             }
         ]
     })

@@ -23,7 +23,7 @@ const CreateANewPost = (id, data) => {
         Title: data.Title,
         Content: data.Content,
         DateCreation: date,
-        UserId: data.UserId,
+        AuthorId: data.UserId,
         GroupId: id,
         isPinned: false,
     })

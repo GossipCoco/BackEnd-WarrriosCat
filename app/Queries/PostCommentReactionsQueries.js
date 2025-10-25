@@ -20,10 +20,12 @@ const CreateANewPost = (id, data) => {
     const postId = uuidv4();
     return model.GroupPost.create({
         Id: postId,
+        Title: data.Title,
         Content: data.Content,
         DateCreation: date,
         UserId: data.UserId,
-        GroupId: data.id
+        GroupId: id,
+        isPinned: false,
     })
 }
 module.exports = {

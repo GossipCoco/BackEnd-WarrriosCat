@@ -14,6 +14,21 @@ const GetPostAllCommentReactions = (id) =>{
         ]
     })
 }
+const GetAPostAllCommentReactionsById = (id) =>{
+    console.log("**** GetAPostAllCommentReactions ****",id);
+    return model.GroupPost.findOne({
+        where: { Id: id },
+        include:[
+            { model: model.User,attributes: ['UserName', 'Avatar']},
+            { model: model.GroupComment},
+            { model: model.PostReaction},
+            {
+                model: model.Group,
+                attributes: ['Id']
+            }
+        ]
+    })
+}
 const CreateANewPost = (id, data) => {
     console.log("**** CreateANewPost ****",id, data);
     const date = new Date().toISOString();
@@ -30,5 +45,6 @@ const CreateANewPost = (id, data) => {
 }
 module.exports = {
     GetPostAllCommentReactions,
+    GetAPostAllCommentReactionsById,
     CreateANewPost
 }

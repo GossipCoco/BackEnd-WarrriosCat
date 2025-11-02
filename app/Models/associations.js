@@ -340,18 +340,25 @@ GroupComment.belongsTo(GroupPost, { foreignKey: 'PostId' });
 User.hasMany(GroupComment,   { foreignKey: 'AuthorId' });
 GroupComment.belongsTo(User, { foreignKey: 'AuthorId' });
 
-// Thread (réponses à un commentaire) — optionnel mais utile
+// Post ↔ Comment
+GroupPost.hasMany(GroupComment, { foreignKey: 'PostId', as: 'Comments' });
+GroupComment.belongsTo(GroupPost, { foreignKey: 'PostId', as: 'Post' });
+
+// Thread (self-join)
 GroupComment.hasMany(GroupComment,   { foreignKey: 'ParentId', as: 'Replies' });
 GroupComment.belongsTo(GroupComment, { foreignKey: 'ParentId', as: 'Parent' });
 
+// Auteurs (si pas déjà fait)
+User.hasMany(GroupComment,   { foreignKey: 'AuthorId' });
+GroupComment.belongsTo(User, { foreignKey: 'AuthorId' });
 
-// Post ↔ PostReaction
-GroupPost.hasMany(PostReaction,   { foreignKey: 'PostId' });
-PostReaction.belongsTo(GroupPost, { foreignKey: 'PostId' });
+User.hasMany(GroupPost,   { foreignKey: 'AuthorId' });
+GroupPost.belongsTo(User, { foreignKey: 'AuthorId' });
 
-// Comment ↔ CommentReaction
+// Réactions (optionnel)
+GroupPost.hasMany(PostReaction,         { foreignKey: 'PostId' });
 GroupComment.hasMany(CommentReaction,   { foreignKey: 'CommentId' });
-CommentReaction.belongsTo(GroupComment, { foreignKey: 'CommentId' });
+
 
 // User ↔ Reactions
 User.hasMany(PostReaction,      { foreignKey: 'UserId' });

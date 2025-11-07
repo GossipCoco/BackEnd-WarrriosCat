@@ -1,6 +1,8 @@
 const { v4: uuidv4 } = require('uuid');
 const model = require('../Models');
 require('../Models/associations');
+const functions = require('../Functions/countFunctions')
+
 
 const GetPostAllCommentReactions = (id) =>{
     console.log("**** GetPostAllCommentReactions ****",id);
@@ -14,16 +16,39 @@ const GetPostAllCommentReactions = (id) =>{
         ]
     })
 }
-const GetAllPostsByGroupId = (Id) => {
-    console.log("**** GetAllPostsById ****", Id);
-    return model.GroupPost.findAll({
-        where: { GroupId: Id },
-        include: [
-            { model: model.User, attributes: ['UserName', 'Avatar'] },                 // auteur du post
-            { model: model.Group, attributes: ['Id', 'Image', 'Name', 'Background'] },  // infos groupe
-            { model: model.PostReaction, required: false },                           // (option) réactions du post
-        ]
-    })
+const GetAllPostsByGroupId = (Id, { page=1, pageSize=12, sort='new' } = {}) => {
+  console.log("**** GetAllPostsByGroupId ****", Id, page, pageSize, sort);
+  const offset = (page - 1) * pageSize;
+  const order =
+    sort === 'pins' ? [['IsPinned','DESC'], ['CreatedAt','DESC']]
+                    : [['CreatedAt','DESC']];
+
+  return model.Group.findOne({
+    where: { Id },
+    attributes: ['Id','Name','Image','Background'],
+    include: [{
+      model: model.GroupPost,
+      // 'separate' = requête séparée pour éviter les doublons + pagination propre
+      separate: true,
+      limit: pageSize,
+      offset,
+      order,
+      include: [
+        { model: model.User, attributes: ['UserName','Avatar'] },
+        { model: model.PostReaction, required: false },
+      ],
+    }],
+  });
+};
+
+const CountAllPostByGroupId = (groupId) => {
+  console.log("**** CountAllPostByGroupId ****", groupId);
+  const promises = []
+  const request = model.GroupPost.findAndCountAll({
+    where: { GroupId: groupId },
+  });  
+  promises.push(request)
+  return functions.countFuntion(request)
 }
 const GetAPostAllCommentReactionsById = (postId) => {
   console.log("**** GetAPostAllCommentReactions ****", postId);
@@ -91,5 +116,6 @@ module.exports = {
     GetPostAllCommentReactions,
     GetAllPostsByGroupId,
     GetAPostAllCommentReactionsById,
+    CountAllPostByGroupId,
     CreateANewPost
 }

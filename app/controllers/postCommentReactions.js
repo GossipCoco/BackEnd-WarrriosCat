@@ -14,4 +14,7 @@ PostCommentReactions.GetAPostAllCommentReactionsById = (req, res) => {
 PostCommentReactions.CreateANewPost = (req, res) => {
     handleResponse(res, query.CreateANewPost(req.params.id, req.body))
 }
+PostCommentReactions.CountAllPostByGroupId = (req, res) => {
+    handleResponse(res, query.CountAllPostByGroupId(req.params.id))
+}
 module.exports = PostCommentReactions

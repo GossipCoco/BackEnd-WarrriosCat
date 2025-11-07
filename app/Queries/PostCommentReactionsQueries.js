@@ -52,7 +52,7 @@ const GetAPostAllCommentReactionsById = (id) => {
       { model: model.PostReaction, required: false },
 
       // Infos du groupe
-      { model: model.Group, attributes: ['Id', 'Image', 'Name'] }
+      { model: model.Group, attributes: ['Id', 'Image', 'Name', 'Background'] }
     ],
     // (optionnel) tri : commentaires récents en premier, puis replies chronos
     order: [

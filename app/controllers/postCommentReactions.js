@@ -5,6 +5,9 @@ const PostCommentReactions = {}
 PostCommentReactions.GetPostAllCommentReactions = (req, res) => {
     handleResponse(res, query.GetPostAllCommentReactions(req.params.id))
 }
+PostCommentReactions.GetAllPostsByGroupId = (req, res) => {
+    handleResponse(res, query.GetAllPostsByGroupId(req.params.id))
+}   
 PostCommentReactions.GetAPostAllCommentReactionsById = (req, res) => {
     handleResponse(res, query.GetAPostAllCommentReactionsById(req.params.id))
 }

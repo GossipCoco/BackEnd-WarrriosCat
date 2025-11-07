@@ -1,6 +1,8 @@
 const { v4: uuidv4 } = require('uuid');
 const model = require('../Models');
 require('../Models/associations');
+const functions = require('../Functions/countFunctions')
+
 
 const GetPostAllCommentReactions = (id) =>{
     console.log("**** GetPostAllCommentReactions ****",id);
@@ -14,51 +16,85 @@ const GetPostAllCommentReactions = (id) =>{
         ]
     })
 }
-const GetAPostAllCommentReactionsById = (id) => {
-  console.log("**** GetAPostAllCommentReactions ****", id);
+const GetAllPostsByGroupId = (Id, { page=1, pageSize=12, sort='new' } = {}) => {
+  console.log("**** GetAllPostsByGroupId ****", Id, page, pageSize, sort);
+  const offset = (page - 1) * pageSize;
+  const order =
+    sort === 'pins' ? [['IsPinned','DESC'], ['CreatedAt','DESC']]
+                    : [['CreatedAt','DESC']];
+
+  return model.Group.findOne({
+    where: { Id },
+    attributes: ['Id','Name','Image','Background'],
+    include: [{
+      model: model.GroupPost,
+      // 'separate' = requête séparée pour éviter les doublons + pagination propre
+      separate: true,
+      limit: pageSize,
+      offset,
+      order,
+      include: [
+        { model: model.User, attributes: ['UserName','Avatar'] },
+        { model: model.PostReaction, required: false },
+      ],
+    }],
+  });
+};
+
+const CountAllPostByGroupId = (groupId) => {
+  console.log("**** CountAllPostByGroupId ****", groupId);
+  const promises = []
+  const request = model.GroupPost.findAndCountAll({
+    where: { GroupId: groupId },
+  });  
+  promises.push(request)
+  return functions.countFuntion(request)
+}
+const GetAPostAllCommentReactionsById = (postId) => {
+  console.log("**** GetAPostAllCommentReactions ****", postId);
 
   return model.GroupPost.findOne({
-    where: { Id: id },
+    where: { Id: postId },
     include: [
-      // Auteur du post
-      { model: model.User, attributes: ['UserName', 'Avatar'] },
-
-      // Commentaires de 1er niveau
-      {
-        model: model.GroupComment,
-        required: false,
-        // (optionnel) ne garder que les racines :
-        // where: { ParentId: null },
-        include: [
-          // Auteur du commentaire
-          { model: model.User, attributes: ['UserName', 'Avatar'] },
-
-          // ✅ Réponses (self-association) -> alias obligatoire
-          {
-            model: model.GroupComment,
-            as: 'Replies',
-            required: false,
-            include: [
-              { model: model.User, attributes: ['UserName', 'Avatar'] }
-            ]
-          }
-
-          // (optionnel) Pour récupérer aussi le parent d’un commentaire donné :
-          // { model: model.GroupComment, as: 'Parent', required: false }
-        ]
-      },
-
-      // Réactions sur le post
-      { model: model.PostReaction, required: false },
-
-      // Infos du groupe
-      { model: model.Group, attributes: ['Id', 'Image', 'Name'] }
-    ],
-    // (optionnel) tri : commentaires récents en premier, puis replies chronos
-    order: [
-      [model.GroupComment, 'CreatedAt', 'DESC'],
-      [model.GroupComment, { model: model.GroupComment, as: 'Replies' }, 'CreatedAt', 'ASC']
+      { model: model.User,  attributes: ['UserName', 'Avatar'] },                 // auteur du post
+      { model: model.Group, attributes: ['Id', 'Image', 'Name', 'Background'] },  // infos groupe
+      // { model: model.PostReaction, required: false },                           // (option) réactions du post
     ]
+  })
+  .then(post => {
+    if (!post) return null;
+
+    return model.GroupComment.findAll({
+      where: { PostId: postId },
+      include: [
+        { model: model.User, attributes: ['UserName', 'Avatar'] },                // auteur du comment
+        // { model: model.CommentReaction, required: false },                      // (option) réactions du comment
+      ],
+      order: [['CreatedAt', 'ASC']]
+    })
+    .then(rows => {
+      // build arbre
+      const plain = rows.map(r => r.get({ plain: true }));
+      const byId = new Map();
+      plain.forEach(n => { n.Replies = []; byId.set(n.Id, n); });
+
+      const roots = [];
+      for (const n of plain) {
+        if (n.ParentId && byId.has(n.ParentId)) byId.get(n.ParentId).Replies.push(n);
+        else if (!n.ParentId) roots.push(n);
+        else roots.push(n); // fallback si parent absent
+      }
+      // tri récursif (chrono)
+      const sortDeep = (arr) => {
+        arr.sort((a,b) => new Date(a.CreatedAt) - new Date(b.CreatedAt));
+        arr.forEach(x => x.Replies && sortDeep(x.Replies));
+      };
+      sortDeep(roots);
+
+      post.setDataValue('Comments', roots);
+      post.setDataValue('commentCount', plain.length);
+      return post;
+    });
   });
 };
 
@@ -78,6 +114,8 @@ const CreateANewPost = (id, data) => {
 }
 module.exports = {
     GetPostAllCommentReactions,
+    GetAllPostsByGroupId,
     GetAPostAllCommentReactionsById,
+    CountAllPostByGroupId,
     CreateANewPost
 }

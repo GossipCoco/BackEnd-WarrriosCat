@@ -16,9 +16,9 @@ const GetPostAllCommentReactions = (id) =>{
         ]
     })
 }
-const GetAllPostsByGroupId = (Id, { page=1, pageSize=12, sort='new' } = {}) => {
-  console.log("**** GetAllPostsByGroupId ****", Id, page, pageSize, sort);
-  const offset = (page - 1) * pageSize;
+const GetAllPostsByGroupId = (Id, nav) => {
+  console.log("**** GetAllPostsByGroupId ****", Id, nav);
+  const sort = 'new'; // Valeur par défaut
   const order =
     sort === 'pins' ? [['IsPinned','DESC'], ['CreatedAt','DESC']]
                     : [['CreatedAt','DESC']];
@@ -30,8 +30,8 @@ const GetAllPostsByGroupId = (Id, { page=1, pageSize=12, sort='new' } = {}) => {
       model: model.GroupPost,
       // 'separate' = requête séparée pour éviter les doublons + pagination propre
       separate: true,
-      limit: pageSize,
-      offset,
+      offset: nav.step * nav.current,
+      limit: nav.step,
       order,
       include: [
         { model: model.User, attributes: ['UserName','Avatar'] },

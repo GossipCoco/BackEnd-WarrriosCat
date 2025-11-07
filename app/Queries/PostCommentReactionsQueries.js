@@ -8,7 +8,7 @@ const GetPostAllCommentReactions = (id) =>{
     console.log("**** GetPostAllCommentReactions ****",id);
     return model.GroupPost.findAll({
         where: { GroupId: id },
-        limit: 3,
+        limit: 4,
         include:[
             { model: model.User,attributes: ['UserName', 'Avatar']},
             { model: model.GroupComment},

@@ -9,4 +9,5 @@ router
 .post('/GetAllPostsByGroupId/:id', PostCommentReactions.GetAllPostsByGroupId)
 .get('/CountAllPostByGroupId/:id', PostCommentReactions.CountAllPostByGroupId)
 .post('/CreateANewPost/:id', PostCommentReactions.CreateANewPost)
+.post('/CreateANewResponseToPost/:id', PostCommentReactions.CreateANewResponseToPost)
 module.exports = router;

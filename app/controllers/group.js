@@ -15,5 +15,9 @@ Group.GetAGroupById = (req, res) => {
 }
 Group.CountAllGroups = (req, res) => {
     handleResponse(res, count.CountAllGroups())
-}   
+}
+Group.GetGroupByPostId = (req, res) => {
+    const postId = req.params.id;
+    handleResponse(res, query.GetGroupByPostId(postId))
+}
 module.exports = Group

@@ -34,8 +34,20 @@ const GetAGroupById = (id) => {
         }]
     })
 }
+const GetGroupByPostId = (postId) => {
+    console.log("**** GetGroupByPostId ****", postId);
+    return model.GroupPost.findOne({
+        where: { Id: postId },
+        include:[
+            {
+                model: model.Group
+            }
+        ]
+    })
+}
 module.exports = {
     GetAllGroups,
     GetAllGroupsWithAllUsers,
-    GetAGroupById
+    GetAGroupById,
+    GetGroupByPostId
 }

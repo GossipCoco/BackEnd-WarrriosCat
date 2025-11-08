@@ -40,7 +40,8 @@ const GetGroupByPostId = (postId) => {
         where: { Id: postId },
         include:[
             {
-                model: model.Group
+                model: model.Group,
+        attributes: ['Id','Name', 'Image','Background'],
             }
         ]
     })

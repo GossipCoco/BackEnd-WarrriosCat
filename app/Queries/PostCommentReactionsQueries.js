@@ -8,7 +8,8 @@ const GetPostAllCommentReactions = (id) =>{
     console.log("**** GetPostAllCommentReactions ****",id);
     return model.GroupPost.findAll({
         where: { GroupId: id },
-        limit: 4,
+        limit: 4,        
+        order: [["CreatedAt", "DESC"]],
         include:[
             { model: model.User,attributes: ['UserName', 'Avatar']},
             { model: model.GroupComment},
@@ -19,9 +20,7 @@ const GetPostAllCommentReactions = (id) =>{
 const GetAllPostsByGroupId = (Id, nav) => {
   console.log("**** GetAllPostsByGroupId ****", Id, nav);
   const sort = 'new'; // Valeur par défaut
-  const order =
-    sort === 'pins' ? [['IsPinned','DESC'], ['CreatedAt','DESC']]
-                    : [['CreatedAt','DESC']];
+  
 
   return model.Group.findOne({
     where: { Id },
@@ -32,7 +31,7 @@ const GetAllPostsByGroupId = (Id, nav) => {
       separate: true,
       offset: nav.step * nav.current,
       limit: nav.step,
-      order,
+      order: [["CreatedAt", "DESC"]],
       include: [
         { model: model.User, attributes: ['UserName','Avatar'] },
         { model: model.PostReaction, required: false },

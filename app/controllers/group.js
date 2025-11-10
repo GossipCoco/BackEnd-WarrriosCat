@@ -20,4 +20,8 @@ Group.GetGroupByPostId = (req, res) => {
     const postId = req.params.id;
     handleResponse(res, query.GetGroupByPostId(postId))
 }
+Group.GetGroupByCommentById = (req, res) => {
+    const id = req.params.id;
+    handleResponse(res, query.GetGroupByCommentById(id))
+}
 module.exports = Group

@@ -136,8 +136,8 @@ const CreateANewResponseToComment = (id, data) => {
         CreatedAt: date,
         UpdateAt: date,
         AuthorId: data.UserId,
-        PostId: data.PostId,
-        ParentId: id,
+        PostId: data.PostID,
+        ParentId: data.ParentID,
         IsPinned : false,
     })
 }

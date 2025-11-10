@@ -127,7 +127,7 @@ const CreateANewResponseToPost = (id, data) => {
     })
 }
 const CreateANewResponseToComment = (id, data) => {
-    console.log("**** CreateANewResponseToPost ****",id, data);
+    console.log("**** CreateANewResponseToPost ****", id, data);
     const date = new Date().toISOString();
     const newId = uuidv4();
     return model.GroupComment.create({
@@ -136,8 +136,8 @@ const CreateANewResponseToComment = (id, data) => {
         CreatedAt: date,
         UpdateAt: date,
         AuthorId: data.UserId,
-        PostId: data.PostId,
-        ParentId: id,
+        PostId: data.PostID,
+        ParentId: null,
         IsPinned : false,
     })
 }

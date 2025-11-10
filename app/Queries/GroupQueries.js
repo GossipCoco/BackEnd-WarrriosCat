@@ -41,8 +41,23 @@ const GetGroupByPostId = (postId) => {
         include:[
             {
                 model: model.Group,
-        attributes: ['Id','Name', 'Image','Background'],
+                attributes: ['Id','Name', 'Image','Background'],
             }
+        ]
+    })
+}
+const GetGroupByCommentById = (Id) => {
+    console.log("**** GetGroupByCommentById ****", Id);
+    return model.GroupComment.findOne({
+        where: { Id: Id },
+        include:[
+            {model: model.GroupPost,
+            include:[
+            {
+                model: model.Group,
+                attributes: ['Id','Name', 'Image','Background'],
+            }]
+        }
         ]
     })
 }
@@ -50,5 +65,6 @@ module.exports = {
     GetAllGroups,
     GetAllGroupsWithAllUsers,
     GetAGroupById,
-    GetGroupByPostId
+    GetGroupByPostId,
+    GetGroupByCommentById
 }

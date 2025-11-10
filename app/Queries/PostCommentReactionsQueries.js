@@ -126,11 +126,27 @@ const CreateANewResponseToPost = (id, data) => {
         IsPinned : false,
     })
 }
+const CreateANewResponseToComment = (id, data) => {
+    console.log("**** CreateANewResponseToPost ****",id, data);
+    const date = new Date().toISOString();
+    const newId = uuidv4();
+    return model.GroupComment.create({
+        Id: newId,
+        Content: data.Content,
+        CreatedAt: date,
+        UpdateAt: date,
+        AuthorId: data.UserId,
+        PostId: data.PostId,
+        ParentId: id,
+        IsPinned : false,
+    })
+}
 module.exports = {
     GetPostAllCommentReactions,
     GetAllPostsByGroupId,
     GetAPostAllCommentReactionsById,
     CountAllPostByGroupId,
     CreateANewPost,
-    CreateANewResponseToPost
+    CreateANewResponseToPost,
+    CreateANewResponseToComment
 }

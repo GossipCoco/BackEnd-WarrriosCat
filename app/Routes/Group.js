@@ -7,6 +7,7 @@ router
 .get('/CountAllGroups', Group.CountAllGroups)
 .get('/GetAllGroupsWithAllUsers', Group.GetAllGroupsWithAllUsers)
 .get('/GetGroupByPostId/:id', Group.GetGroupByPostId)
+.get('/GetGroupByCommentById/:id', Group.GetGroupByCommentById)
 .post('/GetAGroupById/:id', Group.GetAGroupById)
 
 module.exports = router

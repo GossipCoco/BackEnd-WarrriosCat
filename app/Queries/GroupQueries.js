@@ -41,7 +41,7 @@ const GetGroupByPostId = (postId) => {
         include:[
             {
                 model: model.Group,
-                attributes: ['Id','Name', 'Image','Background'],
+                attributes: ['Id','Name', 'Image','Background', 'Symbol'],
             }
         ]
     })

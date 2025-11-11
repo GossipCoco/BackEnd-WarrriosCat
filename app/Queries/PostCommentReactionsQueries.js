@@ -24,7 +24,7 @@ const GetAllPostsByGroupId = (Id, nav) => {
 
   return model.Group.findOne({
     where: { Id },
-    attributes: ['Id','Name','Image','Background'],
+    attributes: ['Id','Name','Image','Background','Symbol'],
     include: [{
       model: model.GroupPost,
       // 'separate' = requête séparée pour éviter les doublons + pagination propre
@@ -56,7 +56,7 @@ const GetAPostAllCommentReactionsById = (postId) => {
     where: { Id: postId },
     include: [
       { model: model.User,  attributes: ['UserName', 'Avatar'] },                 // auteur du post
-      { model: model.Group, attributes: ['Id', 'Image', 'Name', 'Background'] },  // infos groupe
+      { model: model.Group, attributes: ['Id', 'Image', 'Name', 'Background', 'Symbol'] },  // infos groupe
       // { model: model.PostReaction, required: false },                           // (option) réactions du post
     ]
   })

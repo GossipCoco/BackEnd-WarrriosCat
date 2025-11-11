@@ -26,6 +26,9 @@ const Group = connection.define(
       Symbol:{
         type: DataTypes.STRING,
       },
+      Type:{
+        type: DataTypes.STRING,
+      },
       CreatedAt:{
         type: 'DATETIME',
         defaultValue: new Date(functions.toDateTime(Date.now())).toISOString()

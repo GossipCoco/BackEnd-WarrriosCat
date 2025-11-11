@@ -11,6 +11,9 @@ const  UserGroup = connection.define(
       Role:{
         type: DataTypes.STRING,
       },
+      Badge:{
+        type: DataTypes.STRING,
+      },
       CreatedAt:{
         type: 'DATETIME',
         defaultValue: new Date(functions.toDateTime(Date.now())).toISOString()

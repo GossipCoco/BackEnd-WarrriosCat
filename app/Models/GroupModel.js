@@ -8,6 +8,9 @@ const Group = connection.define(
         type: DataTypes.STRING,
         primaryKey: true,
       },
+      Subtitle:{
+        type: DataTypes.STRING,
+      },
       Name:{
         type: DataTypes.STRING,
       },

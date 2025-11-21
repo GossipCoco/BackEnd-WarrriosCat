@@ -41,7 +41,7 @@ const GetGroupByPostId = (postId) => {
         include:[
             {
                 model: model.Group,
-                attributes: ['Id','Name', 'Image','Background', 'Symbol'],
+                attributes: ['Id','Name', 'Image','Background', 'Symbol','Subtitle'],
             }
         ]
     })
@@ -55,7 +55,7 @@ const GetGroupByCommentById = (Id) => {
             include:[
             {
                 model: model.Group,
-                attributes: ['Id','Name', 'Image','Background', 'Symbol'],
+                attributes: ['Id','Name', 'Image','Background', 'Symbol','Subtitle'],
             }]
         }
         ]

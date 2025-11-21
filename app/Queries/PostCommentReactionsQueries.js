@@ -141,6 +141,19 @@ const CreateANewResponseToComment = (id, data) => {
         IsPinned : false,
     })
 }
+const createANewReactionToPost = (postId, data) => {
+    console.log("**** createANewReaactionToPost ****", postId, data);
+    const date = new Date().toISOString();
+    const newId = uuidv4();
+    return model.PostReaction.create({
+        Id: newId,
+        PostId: postId,
+        UserId: data.UserId,
+        Emoji: data.Emoji,
+        CreatedAt: date,
+    })
+  
+  }
 module.exports = {
     GetPostAllCommentReactions,
     GetAllPostsByGroupId,
@@ -148,5 +161,6 @@ module.exports = {
     CountAllPostByGroupId,
     CreateANewPost,
     CreateANewResponseToPost,
-    CreateANewResponseToComment
+    CreateANewResponseToComment,
+    createANewReactionToPost
 }

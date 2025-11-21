@@ -359,13 +359,14 @@ GroupPost.belongsTo(User, { foreignKey: 'AuthorId' });
 GroupPost.hasMany(PostReaction, { foreignKey: 'PostId' });
 PostReaction.belongsTo(GroupPost, { foreignKey: 'PostId' });
 
+User.hasMany(PostReaction,      { foreignKey: 'UserId' });
+PostReaction.belongsTo(User);
 
 GroupComment.hasMany(CommentReaction,   { foreignKey: 'CommentId' });
 
 
 // User ↔ Reactions
-User.hasMany(PostReaction,      { foreignKey: 'UserId' });
-PostReaction.belongsTo(User,    { foreignKey: 'UserId' });
+
 
 User.hasMany(CommentReaction,   { foreignKey: 'UserId' });
 CommentReaction.belongsTo(User, { foreignKey: 'UserId' });

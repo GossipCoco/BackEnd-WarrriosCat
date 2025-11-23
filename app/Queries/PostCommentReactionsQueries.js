@@ -57,7 +57,7 @@ const GetAPostAllCommentReactionsById = (postId) => {
     include: [
       { model: model.User,  attributes: ['UserName', 'Avatar'] },                 // auteur du post
       { model: model.Group, attributes: ['Id', 'Image', 'Name', 'Background', 'Symbol','Subtitle'] },  // infos groupe
-      // { model: model.PostReaction, required: false },                           // (option) réactions du post
+      { model: model.PostReaction },                           // (option) réactions du post
     ]
   })
   .then(post => {

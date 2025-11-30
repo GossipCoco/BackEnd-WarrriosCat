@@ -23,4 +23,10 @@ PostCommentReactions.CreateANewResponseToPost = (req, res) => {
 PostCommentReactions.CreateANewResponseToComment = (req, res) => {
     handleResponse(res, query.CreateANewResponseToComment(req.params.id, req.body))
 }
+PostCommentReactions.createANewReactionToPost = (req, res) => {
+    handleResponse(res, query.createANewReactionToPost(req.params.id, req.body))
+}
+PostCommentReactions.CreateANewReactionToComment = (req, res) => {
+    handleResponse(res, query.CreateANewReactionToComment(req.params.id, req.body))
+}
 module.exports = PostCommentReactions

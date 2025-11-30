@@ -57,7 +57,7 @@ const GetAPostAllCommentReactionsById = (postId) => {
     include: [
       { model: model.User,  attributes: ['UserName', 'Avatar'] },                 // auteur du post
       { model: model.Group, attributes: ['Id', 'Image', 'Name', 'Background', 'Symbol','Subtitle'] },  // infos groupe
-      // { model: model.PostReaction, required: false },                           // (option) réactions du post
+      { model: model.PostReaction },                           // (option) réactions du post
     ]
   })
   .then(post => {
@@ -141,6 +141,30 @@ const CreateANewResponseToComment = (id, data) => {
         IsPinned : false,
     })
 }
+const createANewReactionToPost = (postId, data) => {
+    console.log("**** createANewReaactionToPost ****", postId, data);
+    const date = new Date().toISOString();
+    const newId = uuidv4();
+    return model.PostReaction.create({
+        Id: newId,
+        PostId: postId,
+        UserId: data.UserId,
+        Emoji: data.Emoji,
+        CreatedAt: date,
+    })  
+  }
+const CreateANewReactionToComment = (commentId, data) => {
+    console.log("**** CreateANewReactionToComment ****", commentId, data);
+    const date = new Date().toISOString();
+    const newId = uuidv4();
+    return model.CommentReaction.create({
+        Id: newId,
+        CommentId: commentId,
+        UserId: data.UserId,
+        Emoji: data.Emoji,
+        CreatedAt: date,
+    })
+  }
 module.exports = {
     GetPostAllCommentReactions,
     GetAllPostsByGroupId,
@@ -148,5 +172,7 @@ module.exports = {
     CountAllPostByGroupId,
     CreateANewPost,
     CreateANewResponseToPost,
-    CreateANewResponseToComment
+    CreateANewResponseToComment,
+    createANewReactionToPost,
+    CreateANewReactionToComment
 }

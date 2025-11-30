@@ -12,5 +12,6 @@ router
 .post('/CreateANewResponseToPost/:id', PostCommentReactions.CreateANewResponseToPost)
 .post('/CreateANewResponseToComment/:id', PostCommentReactions.CreateANewResponseToComment)
 .post('/createANewReactionToPost/:id', PostCommentReactions.createANewReactionToPost)
+.post('/CreateANewReactionToComment/:id', PostCommentReactions.CreateANewReactionToComment)
 
 module.exports = router;

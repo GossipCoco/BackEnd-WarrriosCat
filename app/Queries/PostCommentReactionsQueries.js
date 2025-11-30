@@ -151,8 +151,19 @@ const createANewReactionToPost = (postId, data) => {
         UserId: data.UserId,
         Emoji: data.Emoji,
         CreatedAt: date,
+    })  
+  }
+const CreateANewReactionToComment = (commentId, data) => {
+    console.log("**** CreateANewReactionToComment ****", commentId, data);
+    const date = new Date().toISOString();
+    const newId = uuidv4();
+    return model.CommentReaction.create({
+        Id: newId,
+        CommentId: commentId,
+        UserId: data.UserId,
+        Emoji: data.Emoji,
+        CreatedAt: date,
     })
-  
   }
 module.exports = {
     GetPostAllCommentReactions,
@@ -162,5 +173,6 @@ module.exports = {
     CreateANewPost,
     CreateANewResponseToPost,
     CreateANewResponseToComment,
-    createANewReactionToPost
+    createANewReactionToPost,
+    CreateANewReactionToComment
 }

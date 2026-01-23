@@ -16,6 +16,36 @@ const Clan = connection.define(
         type: DataTypes.TEXT,
         allowNull: true,
       },
+      
+      Location: {
+        type: DataTypes.TEXT,
+        allowNull: true,
+      },
+      
+      Personnality: {
+        type: DataTypes.TEXT,
+        allowNull: true,
+      },
+      
+      Skill: {
+        type: DataTypes.TEXT,
+        allowNull: true,
+      },
+      
+      Fight: {
+        type: DataTypes.TEXT,
+        allowNull: true,
+      },
+      
+      Hunting: {
+        type: DataTypes.TEXT,
+        allowNull: true,
+      },
+      
+      Prey: {
+        type: DataTypes.TEXT,
+        allowNull: true,
+      },
       Image: {
         type: DataTypes.STRING,
         allowNull: true,

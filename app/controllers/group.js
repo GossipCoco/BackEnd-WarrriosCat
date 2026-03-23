@@ -24,4 +24,8 @@ Group.GetGroupByCommentById = (req, res) => {
     const id = req.params.id;
     handleResponse(res, query.GetGroupByCommentById(id))
 }
+Group.GetAllGroupsByUser = (req, res) => {
+    const id = req.params.id;
+    handleResponse(res, query.GetAllGroupsByUser(id))
+}
 module.exports = Group

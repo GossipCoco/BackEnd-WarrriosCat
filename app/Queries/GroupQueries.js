@@ -61,10 +61,22 @@ const GetGroupByCommentById = (Id) => {
         ]
     })
 }
+const GetAllGroupsByUser = (Id) => {
+    console.log("**** GetAllGroupsByUser ****", Id);
+    return model.UserGroup.findAll({
+        where:{ UserId: Id },
+        include:[{
+            model: model.Group,
+            attributes: ['Id','Name', 'Symbol'],
+        }]
+
+    })
+}
 module.exports = {
     GetAllGroups,
     GetAllGroupsWithAllUsers,
     GetAGroupById,
     GetGroupByPostId,
-    GetGroupByCommentById
+    GetGroupByCommentById,
+    GetAllGroupsByUser
 }

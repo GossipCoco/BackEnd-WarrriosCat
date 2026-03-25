@@ -66,10 +66,10 @@ const GetAllGroupsByUser = (Id) => {
     return model.UserGroup.findAll({
         limit: 4,
         where:{ UserId: Id },
-        order: [["Id", "ASC"]],
         include:[{
             model: model.Group,
             attributes: ['Id','Name', 'Symbol'],
+            order: [["Id", "ASC"]],
         }]
 
     })

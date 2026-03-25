@@ -64,10 +64,12 @@ const GetGroupByCommentById = (Id) => {
 const GetAllGroupsByUser = (Id) => {
     console.log("**** GetAllGroupsByUser ****", Id);
     return model.UserGroup.findAll({
+        limit: 4,
         where:{ UserId: Id },
         include:[{
             model: model.Group,
             attributes: ['Id','Name', 'Symbol'],
+            order: [["Id", "ASC"]],
         }]
 
     })

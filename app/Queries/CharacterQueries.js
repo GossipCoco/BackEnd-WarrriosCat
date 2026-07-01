@@ -227,12 +227,12 @@ const CreateANewCharacter = (data) => {
 };
 
   module.exports = {
-    countAllCharacters,
-    CountNbOriginaleCharacterByName,
-    CountCharacterByNameSearch,
-    CountNbOriginaleCharacterByUser,
-    CountNbCharactersByClan,
-    CountCharacterByGrade,
+    // countAllCharacters,
+    // CountNbOriginaleCharacterByName,
+    // CountCharacterByNameSearch,
+    // CountNbOriginaleCharacterByUser,
+    // CountNbCharactersByClan,
+    // CountCharacterByGrade,
     GetAllCharacters,
     GetAllCharactersByClan,
     GetAllCharactersByGrade,

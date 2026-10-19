@@ -62,19 +62,19 @@ Character.CreateANewCharacter = (req, res) => {
 Character.GetOriginaleCharacterByUser = (req, res) => {
     const id = req.params.id
     const data = req.body
-    handleResponse(res, originalCharacterQuery.GetOriginaleCharacterByUser(id, data))
+    handleResponse(res, query.GetAllCharactersByUser(id, data))
 }
 Character.GetOriginalCharacterByName = (req, res) => {
-    handleResponse(res, originalCharacterQuery.GetOriginalCharacterByName(req.params.id, req.body))
+    handleResponse(res, query.GetOriginalCharacterByName(req.params.id, req.body))
 }
 Character.GetAllNamesAndIdsOriginaCharacters = (req, res) => {
-    handleResponse(res, originalCharacterQuery.GetAllNamesAndIdsOriginaCharacters(req.params.id))
+    handleResponse(res, query.GetAllNamesAndIdsOriginaCharacters(req.params.id))
 }
 Character.GetAllNamesOfAllCharacters = (req, res) => {
-    handleResponse(res, originalCharacterQuery.GetAllNamesOfAllCharacters())
+    handleResponse(res, query.GetAllNamesOfAllCharacters())
 }
 Character.GetOneOriginaleCharacterByName = (req, res) => {
-    handleResponse(res, originalCharacterQuery.GetOneOriginaleCharacterByName(req.params.id))
+    handleResponse(res, query.GetOneOriginaleCharacterByName(req.params.id))
 }
 Character.CreateAnOriginalCharacter = (req, res) => {
     const usr = req.params.id

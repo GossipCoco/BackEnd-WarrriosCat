@@ -70,7 +70,7 @@ const GetAllCharacters = (nav) => {
 
   const GetAllCharactersByUser = (user) => {
     console.log("GetAllCharactersByUser",user)
-    return model.Character.findAll({
+    return model.Gamer.findAll({
       order: [["UserName", "ASC"]],
       include: [        
         { model: model.Grade },
@@ -78,16 +78,16 @@ const GetAllCharacters = (nav) => {
           model: model.Clan,
           include: [{ model: model.Location }],          
         },
-        { model: model.Warrior,
-          include: [
-            {
-              model: model.Clan,
-              include: [{ model: model.Location }],
-              order: [["Id", "ASC"]],
-            },
-          ],
-          order: [["ClanId", "ASC"]],
-        },
+        // { model: model.Warrior,
+        //   include: [
+        //     {
+        //       model: model.Clan,
+        //       include: [{ model: model.Location }],
+        //       order: [["Id", "ASC"]],
+        //     },
+        //   ],
+        //   order: [["ClanId", "ASC"]],
+        // },
       ],
     });
   };

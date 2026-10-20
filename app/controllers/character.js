@@ -1,5 +1,6 @@
 const query = require('../Queries/CharacterQueries')
 const count = require('../Queries/CharacterCounter')
+const originalCharacterQuery = require('../Queries/OriginalCharacterQueries')
 const { handleResponse } = require("../Functions/handleResponse");  // Importer la fonction
 const Character = {}
 
@@ -68,13 +69,13 @@ Character.GetOriginalCharacterByName = (req, res) => {
     handleResponse(res, query.GetOriginalCharacterByName(req.params.id, req.body))
 }
 Character.GetAllNamesAndIdsOriginaCharacters = (req, res) => {
-    handleResponse(res, query.GetAllNamesAndIdsOriginaCharacters(req.params.id))
+    handleResponse(res, originalCharacterQuery.GetAllNamesAndIdsOriginaCharacters(req.params.id))
 }
 Character.GetAllNamesOfAllCharacters = (req, res) => {
-    handleResponse(res, query.GetAllNamesOfAllCharacters())
+    handleResponse(res, originalCharacterQuery.GetAllNamesOfAllCharacters())
 }
 Character.GetOneOriginaleCharacterByName = (req, res) => {
-    handleResponse(res, query.GetOneOriginaleCharacterByName(req.params.id))
+    handleResponse(res, originalCharacterQuery.GetOneOriginaleCharacterByName(req.params.id))
 }
 Character.CreateAnOriginalCharacter = (req, res) => {
     const usr = req.params.id

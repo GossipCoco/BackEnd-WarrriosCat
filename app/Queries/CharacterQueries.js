@@ -71,7 +71,7 @@ const GetAllCharacters = (nav) => {
   const GetAllCharactersByUser = (user) => {
     console.log("GetAllCharactersByUser",user)
     return model.Gamer.findAll({
-      order: [["UserName", "ASC"]],
+      order: [["UserId", "ASC"]],
       include: [        
         { model: model.Grade },
         {
@@ -175,6 +175,17 @@ const GetAllCharactersByNameGradeAndClan = (data) => {
   const Grade = data.Grade
   const Clan = data.Clan
 }
+const GetOriginalCharacterByName = (id, nav) => {
+  console.log("GetOriginalCharacterByName", id, nav);
+  return model.Gamer.findAll({
+     where: { CurrentName: {
+        [Op.like]: `%${id}%`  // <-- la vraie recherche partielle
+      } },
+    offset: nav.step * nav.current,
+    limit: nav.step,
+    order: [["CurrentName", "ASC"]],
+  })
+}
 // -------- CREATE ----------
 
 const CreateANewCharacter = (data) => {
@@ -241,6 +252,7 @@ const CreateANewCharacter = (data) => {
     GetAllCharactersByUser,
     GetCharacterByName,
     GetCharacterByNameSearch,
-    GetAllCharactersByNameGradeAndClan,    
+    GetAllCharactersByNameGradeAndClan,
+    GetOriginalCharacterByName ,
     CreateANewCharacter,    
   }
